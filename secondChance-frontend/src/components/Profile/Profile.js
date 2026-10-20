@@ -1,137 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import './Profile.css'
-import {urlConfig} from '../../config';
+import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { apiRequest } from '../../api';
 import { useAppContext } from '../../context/AppContext';
-
-const Profile = () => {
-  const [userDetails, setUserDetails] = useState({});
- const [updatedDetails, setUpdatedDetails] = useState({});
- const {setUserName} = useAppContext();
- const [changed, setChanged] = useState("");
-
- const [editMode, setEditMode] = useState(false);
-  const navigate = useNavigate();
+export default function Profile() {
+  const { isLoggedIn, setUserName, setIsLoggedIn } = useAppContext();
+  const [profile, setProfile] = useState(null), [name, setName] = useState(''), [editing, setEditing] = useState(false);
+  const [error, setError] = useState(''), [message, setMessage] = useState(''), [busy, setBusy] = useState(false);
   useEffect(() => {
-    const authtoken = sessionStorage.getItem("auth-token");
-    if (!authtoken) {
-      navigate("/app/login");
-    } else {
-      fetchUserProfile();
-    }
-  }, [navigate]);
-
-  const fetchUserProfile = async () => {
+    if (!isLoggedIn) return;
+    const controller = new AbortController();
+    apiRequest('/api/auth/profile', { signal: controller.signal }).then(data => { setProfile(data); setName(data.name || data.firstName || ''); })
+      .catch(error => {
+        if (error.name === 'AbortError') return;
+        if (error.status === 401) { sessionStorage.removeItem('auth-token'); setIsLoggedIn(false); }
+        else setError(error.message);
+      });
+    return () => controller.abort();
+  }, [isLoggedIn, setIsLoggedIn]);
+  if (!isLoggedIn) return <Navigate to="/app/login" replace />;
+  async function save(event) {
+    event.preventDefault(); setError(''); setMessage(''); setBusy(true);
     try {
-      const authtoken = sessionStorage.getItem("auth-token");
-      const email = sessionStorage.getItem("email"); // Get the email from session storage
-      const name=sessionStorage.getItem('name');
-      if (name || authtoken) {
-                const storedUserDetails = {
-                  name: name,
-                  email:email
-                };
-        
-                setUserDetails(storedUserDetails);
-                setUpdatedDetails(storedUserDetails);
-              }
-} catch (error) {
-  console.error(error);
-  // Handle error case
-}
-};
-
-const handleEdit = () => {
-setEditMode(true);
-};
-
-const handleInputChange = (e) => {
-setUpdatedDetails({
-  ...updatedDetails,
-  [e.target.name]: e.target.value,
-});
-};
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  try {
-    const authtoken = sessionStorage.getItem("auth-token");
-    const email = sessionStorage.getItem("email"); // Get the email from session storage
-
-    if (!authtoken || !email) {
-      navigate("/app/login");
-      return;
-    }
-
-    const payload = { ...updatedDetails };
-    const response = await fetch(`${urlConfig.backendUrl}/api/auth/update`, {
-      method: "PUT",
-      headers: {
-        "Authorization": `Bearer ${authtoken}`,
-        "Content-Type": "application/json",
-        "Email": email,
-      },
-      body: JSON.stringify(payload),
-    });
-
-    if (response.ok) {
-      // Update the user details in session storage
-      sessionStorage.setItem("name", updatedDetails.name);
-      setUserDetails(updatedDetails);
-      setEditMode(false);
-      setUserName(updatedDetails.name);
-      // Display success message to the user
-      setChanged("Name Changed Successfully!");
-      setTimeout(() => {
-        setChanged("");
-        navigate("/");
-      }, 1000);
-
-    } else {
-      // Handle error case
-      throw new Error("Failed to update profile");
-    }
-  } catch (error) {
-    console.error(error);
-    // Handle error case
+      await apiRequest('/api/auth/update', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: name.trim() }) });
+      setProfile({ ...profile, name: name.trim() }); setUserName(name.trim()); sessionStorage.setItem('name', name.trim());
+      setEditing(false); setMessage('Your profile was updated successfully.');
+    } catch (error) { setError(error.message); } finally { setBusy(false); }
   }
-};
-
-return (
-<div className="profile-container">
-  {editMode ? (
-<form onSubmit={handleSubmit}>
-<label>
-  Email
-  <input
-    type="email"
-    name="email"
-    value={userDetails.email}
-    disabled // Disable the email field
-  />
-</label>
-<label>
-   Name
-   <input
-     type="text"
-     name="name"
-     value={updatedDetails.name}
-     onChange={handleInputChange}
-   />
-</label>
-
-<button type="submit">Save</button>
-</form>
-) : (
-<div className="profile-details">
-<h1>Hi, {userDetails.name}</h1>
-<p> <b>Email:</b> {userDetails.email}</p>
-<button onClick={handleEdit}>Edit</button>
-<span style={{color:'green',height:'.5cm',display:'block',fontStyle:'italic',fontSize:'12px'}}>{changed}</span>
-</div>
-)}
-</div>
-);
-};
-
-export default Profile;
+  return <main className="container py-5"><section className="card auth-card p-4 p-md-5 mx-auto"><p className="eyebrow">YOUR ACCOUNT</p><h1 className="h2 mb-4">Profile</h1>
+    {error && <p className="alert alert-danger" role="alert">{error}</p>}{message && <p className="alert alert-success" role="status">{message}</p>}
+    {!profile && !error && <p role="status">Loading profile…</p>}
+    {profile && (editing ? <form onSubmit={save}><label className="form-label" htmlFor="profile-email">Email</label><input id="profile-email" className="form-control mb-3" value={profile.email} disabled /><label className="form-label" htmlFor="profile-name">Name</label><input id="profile-name" className="form-control mb-4" required maxLength="160" value={name} onChange={e => setName(e.target.value)} /><div className="d-flex gap-2"><button className="btn btn-primary" disabled={busy}>{busy ? 'Saving…' : 'Save'}</button><button type="button" className="btn btn-outline-secondary" onClick={() => setEditing(false)}>Cancel</button></div></form> : <><h2 className="h4">Hi, {profile.name || profile.firstName}</h2><p>{profile.email}</p><button className="btn btn-primary" onClick={() => { setEditing(true); setMessage(''); }}>Edit profile</button></>)}
+  </section></main>;
+}

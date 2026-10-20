@@ -1,0 +1,51 @@
+services:
+  mongo:
+    image: mongo:7
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+  seed:
+    build:
+      context: .
+      target: backend
+    environment:
+      MONGO_URL: mongodb://mongo:27017
+      MONGO_DB: secondChance
+    command: ["node", "util/import-mongo/index.js"]
+    depends_on:
+      mongo:
+        condition: service_healthy
+  sentiment:
+    build:
+      context: .
+      target: sentiment
+    restart: unless-stopped
+  app:
+    build:
+      context: .
+      target: backend
+    ports:
+      - "${PORT:-3060}:3060"
+    environment:
+      MONGO_URL: mongodb://mongo:27017
+      MONGO_DB: secondChance
+      JWT_SECRET: ${JWT_SECRET:?Set a random JWT_SECRET with at least 32 characters}
+      SENTIMENT_URL: http://sentiment:5000/sentiment
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3060}
+    volumes:
+      - uploads:/app/secondChance-backend/public/images
+    depends_on:
+      seed:
+        condition: service_completed_successfully
+      sentiment:
+        condition: service_started
+    restart: unless-stopped
+
+volumes:
+  mongo-data:
+  uploads:

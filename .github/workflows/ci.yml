@@ -1,0 +1,65 @@
+name: SecondChance CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      mongodb:
+        image: mongo:7
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --quiet --eval 'db.adminCommand(\"ping\").ok'"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            secondChance-backend/package-lock.json
+            secondChance-frontend/package-lock.json
+            sentiment/package-lock.json
+      - name: Install backend, frontend and sentiment dependencies
+        run: |
+          npm ci --prefix secondChance-backend --no-audit --no-fund
+          npm ci --prefix secondChance-frontend --no-audit --no-fund
+          npm ci --prefix sentiment --no-audit --no-fund
+      - name: Run real MongoDB API and authentication tests
+        env:
+          MONGO_URL: mongodb://127.0.0.1:27017
+          NODE_ENV: test
+        run: npm test --prefix secondChance-backend
+      - name: Test sentiment analysis
+        run: npm test --prefix sentiment
+      - name: Test frontend behavior
+        env:
+          CI: 'true'
+        run: npm test --prefix secondChance-frontend -- --watchAll=false --runInBand
+      - name: Build the production frontend
+        env:
+          CI: 'true'
+        run: npm run build --prefix secondChance-frontend
+      - name: Build deployment containers
+        run: |
+          docker build --target backend -t secondchance-backend:ci .
+          docker build --target sentiment -t secondchance-sentiment:ci .
+      - name: Verify container deployment
+        run: bash scripts/verify-deployment.sh
+      - name: Store compiled frontend
+        uses: actions/upload-artifact@v4
+        with:
+          name: secondchance-frontend
+          path: secondChance-frontend/build

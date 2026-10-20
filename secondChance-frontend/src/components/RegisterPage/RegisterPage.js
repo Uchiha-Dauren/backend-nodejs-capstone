@@ -1,120 +1,28 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {urlConfig} from '../../config';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { apiRequest, saveSession } from '../../api';
 import { useAppContext } from '../../context/AppContext';
-
-import './RegisterPage.css';
-
-function RegisterPage() {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [showerr, setShowerr] = useState('');
-    const navigate = useNavigate();
-    const { setIsLoggedIn } = useAppContext();
-
-    const handleRegister = async () => {
-        //api call
-        const response = await fetch(`${urlConfig.backendUrl}/api/auth/register`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify({
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                password: password
-            })
-        });
-
-        const json = await response.json();
-        console.log('json data', json);
-        console.log('er', json.error);
-
-        // console.log('ers',json.errors);
-
-        if (json.authtoken) {
-            sessionStorage.setItem('auth-token', json.authtoken);
-            sessionStorage.setItem('name', firstName);
-            sessionStorage.setItem('email', json.email);
-            navigate('/app');
-            setIsLoggedIn(true);
-        }
-        if (json.error) {
-            setShowerr(json.error);
-        }
-    }
-
-    return (
-        <div className="container mt-5">
-            <div className="row justify-content-center">
-                <div className="col-md-6 col-lg-4">
-                    <div className="register-card p-4 border rounded">
-                        <h2 className="text-center mb-4 font-weight-bold">Register</h2>
-                        <div className="mb-3">
-                            <label htmlFor="firstName" className="form-label">FirstName</label>
-                            <input
-                                id="firstName"
-                                type="text"
-                                className="form-control"
-                                placeholder="Enter your firstName"
-                                value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)}
-                            />
-                        </div>
-
-                        {/* last name */}
-
-                        <div className="mb-3">
-                            <label htmlFor="lastName" className="form-label">LastName</label>
-                            <input
-                                id="lastName"
-                                type="text"
-                                className="form-control"
-                                placeholder="Enter your lastName"
-                                value={lastName}
-                                onChange={(e) => setLastName(e.target.value)}
-                            />
-                        </div>
-
-                        {/* email  */}
-                        <div className="mb-3">
-                            <label htmlFor="email" className="form-label">Email</label>
-                            <input
-                                id="email"
-                                type="text"
-                                className="form-control"
-                                placeholder="Enter your email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            {showerr && (
-                                <div className="text-danger">{showerr}</div>
-                            )}
-                        </div>
-
-                        <div className="mb-4">
-                            <label htmlFor="password" className="form-label">Password</label>
-                            <input
-                                id="password"
-                                type="password"
-                                className="form-control"
-                                placeholder="Enter your password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div>
-                        <button className="btn btn-primary w-100 mb-3" onClick={handleRegister}>Register</button>
-                        <p className="mt-4 text-center">
-                            Already a member? <a href="/app/login" className="text-primary">Login</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+export default function RegisterPage() {
+  const [form, setForm] = useState({ firstName: '', lastName: '', email: '', password: '' });
+  const [error, setError] = useState(''), [busy, setBusy] = useState(false);
+  const { isLoggedIn, setIsLoggedIn, setUserName } = useAppContext();
+  const navigate = useNavigate();
+  if (isLoggedIn) return <Navigate to="/app" replace />;
+  const update = event => setForm({ ...form, [event.target.name]: event.target.value });
+  async function register(event) {
+    event.preventDefault(); setBusy(true); setError('');
+    try {
+      const data = await apiRequest('/api/auth/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
+      if (!data.authtoken) throw new Error('Registration could not be completed.');
+      saveSession(data); setUserName(data.userName || form.firstName); setIsLoggedIn(true); navigate('/app');
+    } catch (error) { setError(error.message); } finally { setBusy(false); }
+  }
+  return <main className="container py-5"><form className="card auth-card p-4 p-md-5 mx-auto" onSubmit={register}>
+    <p className="eyebrow">JOIN THE COMMUNITY</p><h1 className="h2 mb-4">Create an account</h1>
+    <label className="form-label" htmlFor="firstName">First name</label><input id="firstName" name="firstName" autoComplete="given-name" className="form-control mb-3" required maxLength="80" value={form.firstName} onChange={update} />
+    <label className="form-label" htmlFor="lastName">Last name</label><input id="lastName" name="lastName" autoComplete="family-name" className="form-control mb-3" required maxLength="80" value={form.lastName} onChange={update} />
+    <label className="form-label" htmlFor="email">Email</label><input id="email" name="email" type="email" autoComplete="email" className="form-control mb-3" required value={form.email} onChange={update} />
+    <label className="form-label" htmlFor="password">Password</label><input id="password" name="password" type="password" autoComplete="new-password" className="form-control mb-2" required minLength="8" maxLength="72" value={form.password} onChange={update} /><p className="small text-secondary mb-4">Use at least 8 characters.</p>
+    {error && <p className="alert alert-danger" role="alert">{error}</p>}<button className="btn btn-primary" disabled={busy}>{busy ? 'Creating account…' : 'Register'}</button><p className="mt-4 mb-0">Already a member? <Link to="/app/login">Login</Link></p>
+  </form></main>;
 }
-
-export default RegisterPage;

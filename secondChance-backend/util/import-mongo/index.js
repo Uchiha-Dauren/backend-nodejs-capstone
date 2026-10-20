@@ -1,50 +1,31 @@
-require('dotenv').config();
-const MongoClient = require('mongodb').MongoClient;
-const fs = require('fs');
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+const connectToDatabase = require('../../models/db');
+const { docs: data } = require('./secondChanceItems.json');
 
-// MongoDB connection URL with authentication options
-let url = `${process.env.MONGO_URL}`;
-let filename = `${__dirname}/secondChanceItems.json`;
-const dbName = 'secondChance';
-const collectionName = 'secondChanceItems';
-
-// notice you have to load the array of items into the data object
-const data = JSON.parse(fs.readFileSync(filename, 'utf8')).docs;
-
-// connect to database and insert data into the collection
 async function loadData() {
-    const client = new MongoClient(url);
-
-    try {
-        // Connect to the MongoDB client
-        await client.connect();
-        console.log("Connected successfully to server");
-
-        // database will be created if it does not exist
-        const db = client.db(dbName);
-
-        // collection will be created if it does not exist
-        const collection = db.collection(collectionName);
-        let cursor = await collection.find({});
-        let documents = await cursor.toArray();
-
-        if(documents.length == 0) {
-            // Insert data into the collection
-            const insertResult = await collection.insertMany(data);
-            console.log('Inserted documents:', insertResult.insertedCount);
-        } else {
-            console.log("Items already exists in DB")
-        }
-    } catch (err) {
-        console.error(err);
-    } finally {
-        // Close the connection
-        await client.close();
-    }
+  const db = await connectToDatabase();
+  await connectToDatabase.ensureIndexes();
+  const collection = db.collection('secondChanceItems');
+  // Repeated setup preserves existing edits instead of overwriting them.
+  const result = await collection.bulkWrite(
+    data.map((item) => ({
+      updateOne: { filter: { id: item.id }, update: { $setOnInsert: item }, upsert: true },
+    })),
+  );
+  const totalCount = await collection.countDocuments();
+  console.log(`Inserted documents: ${result.upsertedCount}`);
+  console.log(`Total documents in ${db.databaseName}.secondChanceItems: ${totalCount}`);
+  return { insertedCount: result.upsertedCount, totalCount };
 }
 
-loadData();
+if (require.main === module) {
+  loadData()
+    .catch((error) => {
+      console.error(`Import failed: ${error.message}`);
+      process.exitCode = 1;
+    })
+    .finally(() => connectToDatabase.close());
+}
 
-module.exports = {
-    loadData,
-  };
+module.exports = { loadData };

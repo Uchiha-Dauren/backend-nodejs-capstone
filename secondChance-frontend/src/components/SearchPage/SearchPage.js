@@ -1,142 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {urlConfig} from '../../config';
-
-function SearchPage() {
-    const [searchQuery, setSearchQuery] = useState('');
-    const [ageRange, setAgeRange] = useState(6); // Initialize with minimum value
-    const [searchResults, setSearchResults] = useState([]);
-    const categories = ['Living', 'Bedroom', 'Bathroom', 'Kitchen', 'Office'];
-    const conditions = ['New', 'Like New', 'Older'];
-
-    useEffect(() => {
-        // fetch all products
-        const fetchProducts = async () => {
-            try {
-                let url = `${urlConfig.backendUrl}/api/secondchance/items`
-                console.log(url)
-                const response = await fetch(url);
-                if (!response.ok) {
-                    //something went wrong
-                    throw new Error(`HTTP error; ${response.status}`)
-                }
-                const data = await response.json();
-                setSearchResults(data);
-            } catch (error) {
-                console.log('Fetch error: ' + error.message);
-            }
-        };
-
-        fetchProducts();
-    }, []);
-
-
-    const handleSearch = async () => {
-        // Construct the search URL based on user input
-        const baseUrl = `${urlConfig.backendUrl}/api/secondchance/search?`;
-        const queryParams = new URLSearchParams({
-            name: searchQuery,
-            age_years: ageRange,
-            category: document.getElementById('categorySelect').value,
-            condition: document.getElementById('conditionSelect').value,
-        }).toString();
-
-        try {
-            const response = await fetch(`${baseUrl}${queryParams}`);
-            if (!response.ok) {
-                throw new Error('Search failed');
-            }
-            const data = await response.json();
-            setSearchResults(data);
-        } catch (error) {
-            console.error('Failed to fetch search results:', error);
-        }
-    };
-
-    const navigate = useNavigate();
-
-    const goToDetailsPage = (productId) => {
-        navigate(`/app/product/${productId}`);
-    };
-
-
-
-
-    return (
-        <div className="container mt-5">
-            <div className="row justify-content-center">
-                <div className="col-md-6">
-                    <div className="filter-section mb-3 p-3 border rounded">
-                        <h5>Filters</h5>
-                        <div className="d-flex flex-column">
-                            {/* Category Dropdown */}
-                            <label htmlFor="categorySelect">Category</label>
-                            <select id="categorySelect" className="form-control my-1">
-                                <option value="">All</option>
-                                {categories.map(category => (
-                                    <option key={category} value={category}>{category}</option>
-                                ))}
-                            </select>
-
-                            {/* Condition Dropdown */}
-                            <label htmlFor="conditionSelect">Condition</label>
-                            <select id="conditionSelect" className="form-control my-1">
-                                <option value="">All</option>
-                                {conditions.map(condition => (
-                                    <option key={condition} value={condition}>{condition}</option>
-                                ))}
-                            </select>
-
-                            {/* Age Range Slider */}
-                            <label htmlFor="ageRange">Less than {ageRange} years</label>
-                            <input
-                                type="range"
-                                className="form-control-range"
-                                id="ageRange"
-                                min="1"
-                                max="10"
-                                value={ageRange}
-                                onChange={e => setAgeRange(e.target.value)}
-                            />
-                        </div>
-                    </div>
-
-                    <input
-                        type="text"
-                        className="form-control mb-2"
-                        placeholder="Search for items..."
-                        value={searchQuery}
-                        onChange={e => setSearchQuery(e.target.value)}
-                    />
-                    <button className="btn btn-primary" onClick={handleSearch}>Search</button>
-                    <div className="search-results mt-4">
-                        {searchResults.length > 0 ? (
-                            searchResults.map(product => (
-                                <div key={product.id} className="card mb-3">
-                                    {/* Check if product has an image and display it */}
-                                    <img src={urlConfig.backendUrl+product.image} alt={product.name} className="card-img-top" />
-                                    <div className="card-body">
-                                        <h5 className="card-title">{product.name}</h5>
-                                        <p className="card-text">{product.description.slice(0, 100)}...</p>
-                                    </div>
-                                    <div className="card-footer">
-                                        <button onClick={() => goToDetailsPage(product.id)} className="btn btn-primary">
-                                            View More
-                                        </button>
-                                    </div>
-                                </div>
-                            ))
-                        ) : (
-                            <div className="alert alert-info" role="alert">
-                                No products found. Please revise your filters.
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+import { Link } from 'react-router-dom';
+import { apiRequest } from '../../api';
+import { imageUrl } from '../../config';
+export default function SearchPage() {
+  const [query, setQuery] = useState(''), [category, setCategory] = useState(''), [condition, setCondition] = useState(''), [age, setAge] = useState(10);
+  const [results, setResults] = useState([]), [loading, setLoading] = useState(true), [error, setError] = useState('');
+  useEffect(() => {
+    const controller = new AbortController();
+    apiRequest('/api/secondchance/items', { signal: controller.signal }).then(setResults)
+      .catch(error => { if (error.name !== 'AbortError') setError(error.message); })
+      .finally(() => { if (!controller.signal.aborted) setLoading(false); });
+    return () => controller.abort();
+  }, []);
+  async function search(event) {
+    event.preventDefault(); setLoading(true); setError('');
+    const params = new URLSearchParams({ name: query, category, condition, age_years: age });
+    try { setResults(await apiRequest(`/api/secondchance/search?${params}`)); }
+    catch (error) { setError(error.message); } finally { setLoading(false); }
+  }
+  return <main className="container py-5"><p className="eyebrow">DISCOVER SOMETHING USEFUL</p><h1>Search items</h1>
+    <form onSubmit={search} className="card p-4 my-4"><div className="row g-3 align-items-end">
+      <div className="col-md-4"><label htmlFor="search-query" className="form-label">Item name</label><input id="search-query" className="form-control" value={query} onChange={e => setQuery(e.target.value)} placeholder="Try sofa or table" /></div>
+      <div className="col-md-2"><label htmlFor="categorySelect" className="form-label">Category</label><select id="categorySelect" className="form-select" value={category} onChange={e => setCategory(e.target.value)}><option value="">All</option>{['Living', 'Bedroom', 'Bathroom', 'Kitchen', 'Office'].map(value => <option key={value}>{value}</option>)}</select></div>
+      <div className="col-md-2"><label htmlFor="conditionSelect" className="form-label">Condition</label><select id="conditionSelect" className="form-select" value={condition} onChange={e => setCondition(e.target.value)}><option value="">All</option>{['New', 'Like New', 'Older'].map(value => <option key={value}>{value}</option>)}</select></div>
+      <div className="col-md-2"><label htmlFor="ageRange" className="form-label">Up to {age} years old</label><input type="range" id="ageRange" className="form-range" min="1" max="20" value={age} onChange={e => setAge(e.target.value)} /></div>
+      <div className="col-md-2"><button className="btn btn-primary w-100" disabled={loading}>{loading ? 'Searching…' : 'Search'}</button></div>
+    </div></form>
+    {error && <p className="alert alert-danger" role="alert">{error}</p>}
+    <p role="status" className="text-secondary">{loading ? 'Loading items…' : `${results.length} items found`}</p>
+    {!loading && !results.length && <p>No items match these filters. Try a broader search.</p>}
+    <div className="row g-4">{results.map(item => <div key={item.id} className="col-sm-6 col-lg-4"><article className="card product-card h-100">
+      <div className="image-placeholder">{item.image ? <img src={imageUrl(item.image)} alt={item.name} loading="lazy" /> : <div className="no-image-available">No image available</div>}</div>
+      <div className="card-body"><span className="item-condition">{item.condition}</span><h2 className="h5 mt-2">{item.name}</h2><p>{(item.description || '').slice(0, 130)}</p><Link to={`/app/item/${item.id}`} className="btn btn-outline-primary mt-auto">View Details</Link></div>
+    </article></div>)}</div>
+  </main>;
 }
-
-export default SearchPage;

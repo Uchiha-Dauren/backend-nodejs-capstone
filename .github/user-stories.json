@@ -1,0 +1,101 @@
+[
+  {
+    "title": "Finish user stories",
+    "body": "**As a** developer\n**I need** a prioritized backlog of testable user stories\n**So that** the team can implement and verify the project systematically\n\n### Details and assumptions\n- Use the public repository and .github/ISSUE_TEMPLATE/user-story.md.\n- Track the thirteen course stories and the authentication research item.\n\n### Acceptance criteria\n```gherkin\nGiven the project repository exists\nWhen I open its issues\nThen at least eight stories use the shared template and have a planning label\n```\n",
+    "labels": [
+      "new"
+    ]
+  },
+  {
+    "title": "Initialize and populate MongoDB",
+    "body": "**As a** developer\n**I need** a MongoDB database with the supplied sixteen gifts\n**So that** the API has realistic starting data\n\n### Details and assumptions\n- Database: secondChance; collection: secondChanceItems.\n- A second seed must not duplicate or overwrite existing gifts.\n\n### Acceptance criteria\n```gherkin\nGiven MongoDB is running\nWhen I execute npm run seed in secondChance-backend\nThen the secondChanceItems collection contains sixteen uniquely identified items\n```\n",
+    "labels": [
+      "backlog"
+    ]
+  },
+  {
+    "title": "Run skeleton application",
+    "body": "**As a** developer\n**I need** the application to start with a database health check\n**So that** configuration errors are visible before serving users\n\n### Details and assumptions\n- Use environment variables, not committed credentials.\n- Provide reproducible installation and startup commands.\n\n### Acceptance criteria\n```gherkin\nGiven MongoDB and a JWT secret are configured\nWhen I start the backend\nThen the health endpoint reports a connected database and the API listens on its configured port\n```\n",
+    "labels": [
+      "backlog"
+    ]
+  },
+  {
+    "title": "Implement SecondChanceItems service API",
+    "body": "**As a** gift donor\n**I need** item creation, browsing, editing and deletion\n**So that** I can share useful possessions with new owners\n\n### Details and assumptions\n- GET list and detail remain public.\n- Validate image uploads and assign unique IDs under concurrency.\n\n### Acceptance criteria\n```gherkin\nGiven I am authenticated\nWhen I create a gift and later update or delete it\nThen the changes persist and other users cannot edit my gift\n```\n",
+    "labels": [
+      "backlog"
+    ]
+  },
+  {
+    "title": "Implement Search service API",
+    "body": "**As a** visitor\n**I need** search by name, category, condition and age\n**So that** I can find a suitable gift quickly\n\n### Details and assumptions\n- Escape text used in regular expressions.\n- Invalid numeric filters return a clear validation error.\n\n### Acceptance criteria\n```gherkin\nGiven the seeded gifts are available\nWhen I search for a name and category together\nThen only gifts satisfying both filters are returned\n```\n",
+    "labels": [
+      "backlog"
+    ]
+  },
+  {
+    "title": "Implement Sentiment Analysis service API",
+    "body": "**As a** visitor\n**I need** a sentiment analysis endpoint\n**So that** I can evaluate the tone of feedback\n\n### Details and assumptions\n- Use natural with its English sentiment vocabulary.\n- Reject missing or excessively large sentences; no external AI API is required.\n\n### Acceptance criteria\n```gherkin\nGiven the sentiment service is running\nWhen I submit a positive, negative or neutral sentence\nThen the response includes a numerical sentimentScore and a matching sentiment label\n```\n",
+    "labels": [
+      "backlog"
+    ]
+  },
+  {
+    "title": "Implement Registration backend service API",
+    "body": "**As a** new user\n**I need** a registration form and endpoint\n**So that** I can create my own account\n\n### Details and assumptions\n- Enforce a unique normalized email index.\n- Never return password hashes in API responses.\n\n### Acceptance criteria\n```gherkin\nGiven I provide a name, unique valid email and acceptable password\nWhen I register\nThen the account is stored with a password hash and I receive an authenticated session\n```\n",
+    "labels": [
+      "backlog"
+    ]
+  },
+  {
+    "title": "Implement Login backend service API",
+    "body": "**As a** registered user\n**I need** secure login\n**So that** I can access my account and create gifts\n\n### Details and assumptions\n- Reject incorrect credentials without revealing whether an account exists.\n- Read JWT_SECRET from the runtime environment.\n\n### Acceptance criteria\n```gherkin\nGiven an account exists\nWhen I submit the correct credentials\nThen I receive a signed expiring JWT and my public profile\n```\n",
+    "labels": [
+      "backlog"
+    ]
+  },
+  {
+    "title": "Implement User Profile backend service API",
+    "body": "**As a** registered user\n**I need** a profile update endpoint\n**So that** my displayed name stays current\n\n### Details and assumptions\n- Authorization comes from the signed token, not a request-supplied email.\n- The update endpoint does not change an account email or password.\n\n### Acceptance criteria\n```gherkin\nGiven I am logged in\nWhen I change my first and last name\nThen the updated profile is saved for my JWT identity only\n```\n",
+    "labels": [
+      "backlog"
+    ]
+  },
+  {
+    "title": "Integrate the frontend provided with the backend",
+    "body": "**As a** visitor\n**I need** a complete browser experience\n**So that** I can browse, search, register, sign in and manage my profile\n\n### Details and assumptions\n- Serve home.html at / and React routes below /app.\n- Use relative same-origin API URLs and show request errors.\n\n### Acceptance criteria\n```gherkin\nGiven the production application is deployed\nWhen I select Get Started on the landing page\nThen the React application loads and uses the real backend services\n```\n",
+    "labels": [
+      "backlog"
+    ]
+  },
+  {
+    "title": "Add CI/CD pipelines for backend services",
+    "body": "**As a** maintainer\n**I need** automated tests and deployment checks\n**So that** changes are verified before release\n\n### Details and assumptions\n- Use a real MongoDB service in CI.\n- Preserve the completed workflow output as evidence; never manufacture a pass.\n\n### Acceptance criteria\n```gherkin\nGiven a commit is pushed or a pull request opened\nWhen the CI workflow runs\nThen MongoDB integration tests, sentiment tests, frontend build and container deployment smoke tests pass\n```\n",
+    "labels": [
+      "new"
+    ]
+  },
+  {
+    "title": "Containerize the services and applications",
+    "body": "**As a** operator\n**I need** reproducible containers\n**So that** the same application can run outside the development machine\n\n### Details and assumptions\n- Use a multi-stage frontend build and a non-root application user.\n- Keep database data and uploaded images in persistent volumes.\n\n### Acceptance criteria\n```gherkin\nGiven the source repository has been cloned\nWhen I build the backend and sentiment Docker targets\nThen both images build and run without requiring local node_modules\n```\n",
+    "labels": [
+      "backlog"
+    ]
+  },
+  {
+    "title": "Deploy backend services",
+    "body": "**As a** operator\n**I need** a running website with persistent storage\n**So that** users can access the completed SecondChance application\n\n### Details and assumptions\n- Seed the database before starting the application.\n- Capture real browser and curl evidence with visible deployment URLs.\n\n### Acceptance criteria\n```gherkin\nGiven the images and a random JWT secret are ready\nWhen I start the Compose services\nThen the landing page, gift APIs and sentiment proxy are reachable and healthy\n```\n",
+    "labels": [
+      "backlog"
+    ]
+  },
+  {
+    "title": "Research authentication in Express",
+    "body": "**As a** maintainer\n**I need** documented options for stronger account protection\n**So that** future authentication changes have clear tradeoffs\n\n### Details and assumptions\n- Optional follow-up: expand authentication beyond the required course scope.\n- Keep this research separate from the implemented registration, login and profile endpoints.\n\n### Acceptance criteria\n```gherkin\nGiven the baseline bcrypt and JWT authentication works\nWhen I evaluate refresh-token rotation, rate limiting and account recovery\nThen a follow-up design identifies implementation and testing requirements without claiming those features already exist\n```\n",
+    "labels": [
+      "icebox",
+      "technical debt"
+    ]
+  }
+]

@@ -1,83 +1,26 @@
-body {
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background-color: #f4f4f4; /* Updated background color */
-}
-
-/* Create a pseudo-element for the background and blur */
-body::before {
-    content: '';
-    position: fixed; /* Fixed position to cover the entire viewport */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('/static/background-colors.jpg') no-repeat center center;
-    background-size: cover;
-    filter: blur(8px); /* Slightly reduced blur effect */
-    z-index: -1; /* Place it behind the content */
-}
-
-.content {
-    position: relative;
-    font-weight: 600;
-    z-index: 2; /* Higher z-index to ensure content is above the blurred background */
-    text-align: center;
-    color: #1a1a1a; /* Updated text color for better readability */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
-    border-radius: 10px; /* Rounded corners for the content area */
-}
-
-h1, h2 {
-    font-size: 4rem; /* Large font size for main heading */
-    color: #333; /* Darker text color for headings */
-    margin-bottom: 0.5em;
-
-    font-weight: 700;
-}
-
-.lead {
-    font-size: 1.5rem; /* Large font size for the quote */
-    color: #333; /* Dark text color for better readability */
-    margin-bottom: 2rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for legibility */
-}
-
-.btn-primary {
-    background-color: #1E90FF; /* Vibrant color for the button */
-    color: #FFFFFF; /* White text for contrast */
-    border: none;
-    padding: 1rem 2.5rem; /* Generous padding for a larger button */
-    border-radius: 30px; /* Rounded, but not fully pill-shaped */
-    font-size: 1.2rem; /* Larger font size for readability */
-    font-weight: 700; /* Bold font for the button text */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    transition: background-color 0.3s, transform 0.1s;
-}
-
-.btn-primary:hover,
-.btn-primary:focus {
-    background-color: #f50057; /* A lighter shade for interaction feedback */
-    transform: scale(1.05); /* Slightly enlarge button on hover/focus */
-}
-
-@media (max-width: 768px) {
-    h1 {
-        font-size: 3rem; /* Smaller font size for headings on mobile */
-    }
-    h2 {
-        font-size: 2.5rem; /* Smaller font size for subheadings on mobile */
-    }
-    .lead {
-        font-size: 1.25rem; /* Smaller font size for text on mobile */
-    }
-}
+* { box-sizing: border-box; }
+:root { color-scheme: light; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color: #18342e; background: #f7f7f0; }
+body { margin: 0; }
+a { color: inherit; text-decoration: none; }
+header { max-width: 1320px; margin: 0 auto; padding: 30px 48px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #dce1d5; }
+.brand { font-size: 28px; font-weight: 800; letter-spacing: -1px; }.brand span { color: #d17b54; }
+nav { display: flex; gap: 32px; font-size: 15px; font-weight: 600; }
+nav a:hover { color: #b6613f; }
+main { max-width: 1320px; margin: 0 auto; padding: 0 48px; }
+.hero { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 70px; min-height: 620px; padding: 64px 0; }
+.eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #4a6e58; margin: 0 0 24px; }
+h1 { font-size: clamp(48px,5.4vw,76px); line-height: 1.05; letter-spacing: -4px; font-weight: 750; margin: 0 0 25px; }
+.intro { color: #53685e; font-size: 18px; line-height: 1.75; max-width: 510px; margin: 0 0 32px; }
+.button { display: inline-flex; align-items: center; justify-content: space-between; gap: 46px; padding: 18px 25px; color: white; background: #1c5943; border-radius: 7px; font-size: 16px; font-weight: 650; transition: background .15s; }
+.button:hover { background: #123e2e; }.button span { font-size: 24px; line-height: 1; }
+.note { margin-top: 16px; font-size: 13px; color: #708074; }
+.hero-art { background: #e5ebd7; border-radius: 140px 140px 16px 16px; padding: 52px 30px 30px; min-height: 440px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.hero-art img { width: 100%; height: 300px; object-fit: contain; }
+.art-caption { font-size: 13px; font-weight: 600; color: #4d6651; margin-top: 26px; }
+.values { border-top: 1px solid #dce1d5; padding: 34px 0 44px; display: grid; grid-template-columns: repeat(3,1fr); gap: 48px; }
+.values article { position: relative; padding-left: 44px; }.number { position: absolute; left: 0; top: 4px; font-size: 12px; font-weight: 700; color: #b6613f; }
+h2 { margin: 0 0 10px; font-size: 21px; letter-spacing: -.4px; }.values p { color: #68796c; font-size: 14px; line-height: 1.6; margin: 0; }
+footer { border-top: 1px solid #dce1d5; max-width: 1224px; margin: 0 auto; display: flex; justify-content: space-between; padding: 22px 0; font-size: 12px; color: #758171; }footer span { font-weight: 700; }footer p { margin: 0; }
+:focus-visible { outline: 3px solid #ca7650; outline-offset: 5px; }
+@media(max-width: 800px) { header { padding: 23px 24px; }.brand{font-size:24px;}nav{gap:18px;}main{padding:0 24px;}.hero{gap:30px;padding:44px 0;grid-template-columns:1fr;}h1{font-size:54px;letter-spacing:-2.5px;}.hero-art{min-height:320px;}.hero-art img{height:220px;}.values{grid-template-columns:1fr;gap:26px;}footer{margin:0 24px;gap:20px;} }
+@media(prefers-reduced-motion: reduce) { * { transition:none!important; } }
