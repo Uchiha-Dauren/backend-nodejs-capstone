@@ -80,6 +80,8 @@ The standalone sentiment service also accepts `POST http://localhost:5000/sentim
 ## Tests and CI
 
 ```sh
+npm ci
+npm run lint
 MONGO_URL=mongodb://127.0.0.1:27017 npm test --prefix secondChance-backend
 npm test --prefix sentiment
 CI=true npm run build --prefix secondChance-frontend
@@ -87,7 +89,7 @@ CI=true npm run build --prefix secondChance-frontend
 
 Backend tests start an ephemeral HTTP listener and use a real MongoDB database with a unique test-only name. They verify the sixteen records, seed idempotency, filters, password hashing, login, authorization, profile updates, upload validation and concurrent writes. Only the unique test database is deleted after the run.
 
-GitHub Actions runs on pushes, pull requests and manual dispatch. After the tests and build, it starts disposable MongoDB, backend and sentiment containers and verifies the deployed landing page, React entry, image serving, API and sentiment response. Success in the workflow is reported only after all commands have passed.
+GitHub Actions runs on pushes, pull requests and manual dispatch. Immediately after Node.js setup, the **Install and Run Linter** step installs the pinned root tooling and runs ESLint's recommended rules, Node.js globals and additional correctness rules against the backend, sentiment service, scripts and tests. Application dependency installation and tests follow that step. After the tests and build, the workflow starts disposable MongoDB, backend and sentiment containers and verifies the deployed landing page, React entry, image serving, API and sentiment response. Success in the workflow is reported only after all commands have passed.
 
 ## Container deployment
 

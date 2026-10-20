@@ -29,9 +29,14 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: |
+            package-lock.json
             secondChance-backend/package-lock.json
             secondChance-frontend/package-lock.json
             sentiment/package-lock.json
+      - name: Install and Run Linter
+        run: |
+          npm ci --no-audit --no-fund
+          npm run lint
       - name: Install backend, frontend and sentiment dependencies
         run: |
           npm ci --prefix secondChance-backend --no-audit --no-fund
