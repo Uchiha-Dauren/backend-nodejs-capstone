@@ -1,0 +1,158 @@
+[
+  {
+    "id": 118519459858,
+    "run_id": 39390153869,
+    "workflow_name": "SecondChance CI",
+    "head_branch": "main",
+    "run_url": "https://api.github.com/repos/Uchiha-Dauren/backend-nodejs-capstone/actions/runs/39390153869",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOVQlo4c8AAAAbmE9wEg",
+    "head_sha": "9e7abb77f7b8d4ae5da201cacf8709e93efe705c",
+    "url": "https://api.github.com/repos/Uchiha-Dauren/backend-nodejs-capstone/actions/jobs/118519459858",
+    "html_url": "https://github.com/Uchiha-Dauren/backend-nodejs-capstone/actions/runs/39390153869/job/118519459858",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-20T07:58:59Z",
+    "started_at": "2026-10-20T07:59:01Z",
+    "completed_at": "2026-10-20T08:00:30Z",
+    "name": "test-and-build",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-20T07:59:02Z",
+        "completed_at": "2026-10-20T07:59:03Z"
+      },
+      {
+        "name": "Initialize containers",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-20T07:59:03Z",
+        "completed_at": "2026-10-20T07:59:26Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-10-20T07:59:26Z",
+        "completed_at": "2026-10-20T07:59:28Z"
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-10-20T07:59:28Z",
+        "completed_at": "2026-10-20T07:59:28Z"
+      },
+      {
+        "name": "Install backend, frontend and sentiment dependencies",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-10-20T07:59:28Z",
+        "completed_at": "2026-10-20T07:59:41Z"
+      },
+      {
+        "name": "Run real MongoDB API and authentication tests",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-20T07:59:41Z",
+        "completed_at": "2026-10-20T07:59:43Z"
+      },
+      {
+        "name": "Test sentiment analysis",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-10-20T07:59:43Z",
+        "completed_at": "2026-10-20T07:59:44Z"
+      },
+      {
+        "name": "Test frontend behavior",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-10-20T07:59:44Z",
+        "completed_at": "2026-10-20T07:59:45Z"
+      },
+      {
+        "name": "Build the production frontend",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-10-20T07:59:45Z",
+        "completed_at": "2026-10-20T07:59:51Z"
+      },
+      {
+        "name": "Build deployment containers",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-10-20T07:59:51Z",
+        "completed_at": "2026-10-20T08:00:20Z"
+      },
+      {
+        "name": "Verify container deployment",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-10-20T08:00:20Z",
+        "completed_at": "2026-10-20T08:00:23Z"
+      },
+      {
+        "name": "Store compiled frontend",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-10-20T08:00:23Z",
+        "completed_at": "2026-10-20T08:00:25Z"
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 22,
+        "started_at": "2026-10-20T08:00:25Z",
+        "completed_at": "2026-10-20T08:00:27Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 23,
+        "started_at": "2026-10-20T08:00:27Z",
+        "completed_at": "2026-10-20T08:00:27Z"
+      },
+      {
+        "name": "Stop containers",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 24,
+        "started_at": "2026-10-20T08:00:27Z",
+        "completed_at": "2026-10-20T08:00:28Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25,
+        "started_at": "2026-10-20T08:00:28Z",
+        "completed_at": "2026-10-20T08:00:28Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/Uchiha-Dauren/backend-nodejs-capstone/check-runs/118519459858",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000000053,
+    "runner_name": "GitHub Actions 1000000053",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  }
+]

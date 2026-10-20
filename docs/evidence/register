@@ -1,0 +1,26 @@
+$ curl -i -sS -X POST http://127.0.0.1:3060/api/auth/register -H 'Content-Type: application/json' -d '{"firstName": "Capstone", "lastName": "Reviewer", "email": "capstone.demo@example.test", "password": "[REDACTED: demonstration password]"}'
+HTTP/1.1 201 Created
+Vary: Origin
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Content-Type: application/json; charset=utf-8
+Content-Length: 558
+ETag: W/"22e-QztLdm947Bjg0wCGVUnD4iC8zCM"
+Date: Tue, 20 Oct 2026 08:00:30 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{
+  "authtoken": "[REDACTED: temporary demonstration JWT]",
+  "userName": "Capstone Reviewer",
+  "userEmail": "capstone.demo@example.test",
+  "email": "capstone.demo@example.test",
+  "user": {
+    "id": "6ad71f9ea6fc9d05fd365802",
+    "firstName": "Capstone",
+    "lastName": "Reviewer",
+    "name": "Capstone Reviewer",
+    "email": "capstone.demo@example.test"
+  }
+}
+Note: the temporary authentication token and demonstration password have been redacted; HTTP response headers are preserved from the original execution.

@@ -1,0 +1,375 @@
+CI/CD SUBMISSION EVIDENCE
+
+Repository: https://github.com/Uchiha-Dauren/backend-nodejs-capstone
+Workflow: SecondChance CI
+Run: https://github.com/Uchiha-Dauren/backend-nodejs-capstone/actions/runs/39390153869
+Commit: 9e7abb77f7b8d4ae5da201cacf8709e93efe705c
+Job: test-and-build
+Status: completed
+Conclusion: success
+Started: 2026-10-20T07:59:01Z
+Completed: 2026-10-20T08:00:30Z
+
+Source: GitHub Actions job metadata in ci-jobs.json and downloaded terminal logs in CICD.
+The excerpts below preserve actual output and timestamps; terminal color escapes and trailing whitespace are removed.
+Repetitive dependency download output, container service logs and request logger JSON are omitted.
+The complete original log remains in CICD.
+
+ALL WORKFLOW STEPS (from GitHub Actions job metadata)
+1. Set up job — completed; success
+2. Initialize containers — completed; success
+3. Run actions/checkout@v4 — completed; success
+4. Run actions/setup-node@v4 — completed; success
+5. Install backend, frontend and sentiment dependencies — completed; success
+6. Run real MongoDB API and authentication tests — completed; success
+7. Test sentiment analysis — completed; success
+8. Test frontend behavior — completed; success
+9. Build the production frontend — completed; success
+10. Build deployment containers — completed; success
+11. Verify container deployment — completed; success
+12. Store compiled frontend — completed; success
+22. Post Run actions/setup-node@v4 — completed; success
+23. Post Run actions/checkout@v4 — completed; success
+24. Stop containers — completed; success
+25. Complete job — completed; success
+
+
+=== REAL MONGODB API AND AUTHENTICATION TESTS — 18 passed, 0 failed ===
+[Actual excerpt from CICD lines 267–399]
+
+2026-10-20T07:59:41.7194110Z ##[group]Run npm test --prefix secondChance-backend
+2026-10-20T07:59:41.7194368Z npm test --prefix secondChance-backend
+2026-10-20T07:59:41.7252340Z shell: /usr/bin/bash -e {0}
+2026-10-20T07:59:41.7252483Z env:
+2026-10-20T07:59:41.7252627Z   MONGO_URL: mongodb://127.0.0.1:27017
+2026-10-20T07:59:41.7252783Z   NODE_ENV: test
+2026-10-20T07:59:41.7252903Z ##[endgroup]
+2026-10-20T07:59:41.8098416Z
+2026-10-20T07:59:41.8099051Z > giftlink-backend@1.0.0 test
+2026-10-20T07:59:41.8099461Z > node --test ../tests/*.test.cjs
+2026-10-20T07:59:41.8099752Z
+2026-10-20T07:59:41.8399227Z TAP version 13
+2026-10-20T07:59:42.1562914Z # Inserted documents: 16
+2026-10-20T07:59:42.1563676Z # Total documents in secondChance_test_2723_1792483181856.secondChanceItems: 16
+2026-10-20T07:59:42.1814370Z # Subtest: health checks the real MongoDB connection
+2026-10-20T07:59:42.1820672Z ok 1 - health checks the real MongoDB connection
+2026-10-20T07:59:42.1821369Z   ---
+2026-10-20T07:59:42.1821800Z   duration_ms: 195.148425
+2026-10-20T07:59:42.1822151Z   type: 'test'
+2026-10-20T07:59:42.1822468Z   ...
+2026-10-20T07:59:42.1960486Z # Inserted documents: 0
+2026-10-20T07:59:42.1990701Z # Total documents in secondChance_test_2723_1792483181856.secondChanceItems: 16
+2026-10-20T07:59:42.2030655Z # Subtest: seeding imports exactly 16 gifts and a second seed creates no duplicates
+2026-10-20T07:59:42.2046483Z ok 2 - seeding imports exactly 16 gifts and a second seed creates no duplicates
+2026-10-20T07:59:42.2047080Z   ---
+2026-10-20T07:59:42.2047438Z   duration_ms: 13.4521
+2026-10-20T07:59:42.2047889Z   type: 'test'
+2026-10-20T07:59:42.2048251Z   ...
+2026-10-20T07:59:42.2064257Z # Subtest: one gift can be retrieved by its ID and unknown IDs return 404
+2026-10-20T07:59:42.2065756Z ok 3 - one gift can be retrieved by its ID and unknown IDs return 404
+2026-10-20T07:59:42.2066212Z   ---
+2026-10-20T07:59:42.2066543Z   duration_ms: 12.176586
+2026-10-20T07:59:42.2066882Z   type: 'test'
+2026-10-20T07:59:42.2067182Z   ...
+2026-10-20T07:59:42.2177122Z # Subtest: search combines case-insensitive name and category filters
+2026-10-20T07:59:42.2196735Z ok 4 - search combines case-insensitive name and category filters
+2026-10-20T07:59:42.2221534Z   ---
+2026-10-20T07:59:42.2240953Z   duration_ms: 11.252963
+2026-10-20T07:59:42.2249996Z   type: 'test'
+2026-10-20T07:59:42.2264231Z   ...
+2026-10-20T07:59:42.2264894Z # Subtest: search treats special regular-expression characters as text
+2026-10-20T07:59:42.2265592Z ok 5 - search treats special regular-expression characters as text
+2026-10-20T07:59:42.2266021Z   ---
+2026-10-20T07:59:42.2311450Z   duration_ms: 5.491013
+2026-10-20T07:59:42.2311885Z   type: 'test'
+2026-10-20T07:59:42.2339949Z   ...
+2026-10-20T07:59:42.4674567Z # Subtest: registration stores a password hash and never returns password fields
+2026-10-20T07:59:42.4675327Z ok 6 - registration stores a password hash and never returns password fields
+2026-10-20T07:59:42.4675789Z   ---
+2026-10-20T07:59:42.4676012Z   duration_ms: 243.647228
+2026-10-20T07:59:42.4676209Z   type: 'test'
+2026-10-20T07:59:42.4676376Z   ...
+2026-10-20T07:59:43.1193035Z # Subtest: duplicate account creation is prevented even for concurrent requests
+2026-10-20T07:59:43.1193438Z ok 7 - duplicate account creation is prevented even for concurrent requests
+2026-10-20T07:59:43.1193672Z   ---
+2026-10-20T07:59:43.1193800Z   duration_ms: 652.648828
+2026-10-20T07:59:43.1193936Z   type: 'test'
+2026-10-20T07:59:43.1194499Z   ...
+2026-10-20T07:59:43.3365795Z # Subtest: invalid registration and failed login produce appropriate failures
+2026-10-20T07:59:43.3366403Z ok 8 - invalid registration and failed login produce appropriate failures
+2026-10-20T07:59:43.3366734Z   ---
+2026-10-20T07:59:43.3366926Z   duration_ms: 217.155945
+2026-10-20T07:59:43.3367075Z   type: 'test'
+2026-10-20T07:59:43.3367189Z   ...
+2026-10-20T07:59:43.5622075Z # Subtest: login returns a usable JWT and authenticated profile
+2026-10-20T07:59:43.5623284Z ok 9 - login returns a usable JWT and authenticated profile
+2026-10-20T07:59:43.5623853Z   ---
+2026-10-20T07:59:43.5624048Z   duration_ms: 225.363094
+2026-10-20T07:59:43.5624268Z   type: 'test'
+2026-10-20T07:59:43.5624444Z   ...
+2026-10-20T07:59:43.5672185Z # Subtest: missing and tampered JWTs cannot update a profile
+2026-10-20T07:59:43.5672752Z ok 10 - missing and tampered JWTs cannot update a profile
+2026-10-20T07:59:43.5673115Z   ---
+2026-10-20T07:59:43.5673342Z   duration_ms: 5.506426
+2026-10-20T07:59:43.5673628Z   type: 'test'
+2026-10-20T07:59:43.5673848Z   ...
+2026-10-20T07:59:43.5727519Z # Subtest: authenticated profile update persists the name
+2026-10-20T07:59:43.5728491Z ok 11 - authenticated profile update persists the name
+2026-10-20T07:59:43.5729110Z   ---
+2026-10-20T07:59:43.5729650Z   duration_ms: 5.56216
+2026-10-20T07:59:43.5730020Z   type: 'test'
+2026-10-20T07:59:43.5730728Z   ...
+2026-10-20T07:59:43.5823883Z # Subtest: creating a gift requires authentication
+2026-10-20T07:59:43.5824315Z ok 12 - creating a gift requires authentication
+2026-10-20T07:59:43.5825223Z   ---
+2026-10-20T07:59:43.5825404Z   duration_ms: 9.429442
+2026-10-20T07:59:43.5825606Z   type: 'test'
+2026-10-20T07:59:43.5825783Z   ...
+2026-10-20T07:59:43.8048103Z # Subtest: another account cannot change or delete a gift it does not own
+2026-10-20T07:59:43.8049136Z ok 13 - another account cannot change or delete a gift it does not own
+2026-10-20T07:59:43.8049841Z   ---
+2026-10-20T07:59:43.8050167Z   duration_ms: 221.870908
+2026-10-20T07:59:43.8050569Z   type: 'test'
+2026-10-20T07:59:43.8050890Z   ...
+2026-10-20T07:59:43.8155302Z # Subtest: an owner can update and delete the gift and deletion persists
+2026-10-20T07:59:43.8156208Z ok 14 - an owner can update and delete the gift and deletion persists
+2026-10-20T07:59:43.8156510Z   ---
+2026-10-20T07:59:43.8156690Z   duration_ms: 10.456922
+2026-10-20T07:59:43.8156894Z   type: 'test'
+2026-10-20T07:59:43.8157059Z   ...
+2026-10-20T07:59:43.8201493Z # Subtest: uploaded non-image data is rejected
+2026-10-20T07:59:43.8201940Z ok 15 - uploaded non-image data is rejected
+2026-10-20T07:59:43.8202212Z   ---
+2026-10-20T07:59:43.8202376Z   duration_ms: 5.56248
+2026-10-20T07:59:43.8202563Z   type: 'test'
+2026-10-20T07:59:43.8202730Z   ...
+2026-10-20T07:59:43.8328292Z # Subtest: a real image upload is renamed, served and associated with its gift
+2026-10-20T07:59:43.8328858Z ok 16 - a real image upload is renamed, served and associated with its gift
+2026-10-20T07:59:43.8329713Z   ---
+2026-10-20T07:59:43.8329929Z   duration_ms: 11.175206
+2026-10-20T07:59:43.8330127Z   type: 'test'
+2026-10-20T07:59:43.8330295Z   ...
+2026-10-20T07:59:43.8653034Z # Subtest: concurrent gift creation assigns unique IDs above the seed range
+2026-10-20T07:59:43.8654002Z ok 17 - concurrent gift creation assigns unique IDs above the seed range
+2026-10-20T07:59:43.8654569Z   ---
+2026-10-20T07:59:43.8654791Z   duration_ms: 33.598127
+2026-10-20T07:59:43.8655014Z   type: 'test'
+2026-10-20T07:59:43.8655187Z   ...
+2026-10-20T07:59:43.8676333Z # Subtest: API errors remain JSON and requests cannot read environment files
+2026-10-20T07:59:43.8682038Z ok 18 - API errors remain JSON and requests cannot read environment files
+2026-10-20T07:59:43.8682368Z   ---
+2026-10-20T07:59:43.8682493Z   duration_ms: 2.246679
+2026-10-20T07:59:43.8682629Z   type: 'test'
+2026-10-20T07:59:43.8682744Z   ...
+2026-10-20T07:59:43.8825757Z 1..18
+2026-10-20T07:59:43.8826016Z # tests 18
+2026-10-20T07:59:43.8826209Z # suites 0
+2026-10-20T07:59:43.8826388Z # pass 18
+2026-10-20T07:59:43.8827067Z # fail 0
+2026-10-20T07:59:43.8827246Z # cancelled 0
+2026-10-20T07:59:43.8827439Z # skipped 0
+2026-10-20T07:59:43.8827612Z # todo 0
+2026-10-20T07:59:43.8827820Z # duration_ms 2050.500216
+
+
+=== SENTIMENT SERVICE TESTS — 7 passed, 0 failed ===
+[Actual excerpt from CICD lines 400–473; request logger JSON omitted]
+
+2026-10-20T07:59:43.8942465Z ##[group]Run npm test --prefix sentiment
+2026-10-20T07:59:43.8942672Z npm test --prefix sentiment
+2026-10-20T07:59:43.8995318Z shell: /usr/bin/bash -e {0}
+2026-10-20T07:59:43.8995465Z ##[endgroup]
+2026-10-20T07:59:43.9661738Z
+2026-10-20T07:59:43.9662206Z > sentiment@1.0.0 test
+2026-10-20T07:59:43.9662435Z > node --test
+2026-10-20T07:59:43.9662512Z
+2026-10-20T07:59:44.0007319Z TAP version 13
+2026-10-20T07:59:44.5052830Z # Subtest: classifies positive: I love this wonderful beautiful gift!
+2026-10-20T07:59:44.5059153Z ok 1 - classifies positive: I love this wonderful beautiful gift!
+2026-10-20T07:59:44.5059698Z   ---
+2026-10-20T07:59:44.5060126Z   duration_ms: 30.744754
+2026-10-20T07:59:44.5060509Z   type: 'test'
+2026-10-20T07:59:44.5060824Z   ...
+2026-10-20T07:59:44.5092790Z # Subtest: classifies negative: This is awful and terrible.
+2026-10-20T07:59:44.5094973Z ok 2 - classifies negative: This is awful and terrible.
+2026-10-20T07:59:44.5095471Z   ---
+2026-10-20T07:59:44.5095646Z   duration_ms: 4.865088
+2026-10-20T07:59:44.5095848Z   type: 'test'
+2026-10-20T07:59:44.5096612Z   ...
+2026-10-20T07:59:44.5150214Z # Subtest: classifies neutral: The chair is in the room.
+2026-10-20T07:59:44.5150873Z ok 3 - classifies neutral: The chair is in the room.
+2026-10-20T07:59:44.5179932Z   ---
+2026-10-20T07:59:44.5210072Z   duration_ms: 3.438056
+2026-10-20T07:59:44.5211098Z   type: 'test'
+2026-10-20T07:59:44.5239998Z   ...
+2026-10-20T07:59:44.5276757Z # Subtest: classifies neutral: !!!
+2026-10-20T07:59:44.5277280Z ok 4 - classifies neutral: !!!
+2026-10-20T07:59:44.5299860Z   ---
+2026-10-20T07:59:44.5310278Z   duration_ms: 3.002018
+2026-10-20T07:59:44.5310706Z   type: 'test'
+2026-10-20T07:59:44.5311036Z   ...
+2026-10-20T07:59:44.5328794Z # Subtest: rejects missing, empty and non-string sentences
+2026-10-20T07:59:44.5329180Z ok 5 - rejects missing, empty and non-string sentences
+2026-10-20T07:59:44.5329638Z   ---
+2026-10-20T07:59:44.5329944Z   duration_ms: 8.283204
+2026-10-20T07:59:44.5330554Z   type: 'test'
+2026-10-20T07:59:44.5330724Z   ...
+2026-10-20T07:59:44.5334872Z # Subtest: rejects oversized sentences
+2026-10-20T07:59:44.5335062Z ok 6 - rejects oversized sentences
+2026-10-20T07:59:44.5335204Z   ---
+2026-10-20T07:59:44.5335317Z   duration_ms: 5.500386
+2026-10-20T07:59:44.5335450Z   type: 'test'
+2026-10-20T07:59:44.5335565Z   ...
+2026-10-20T07:59:44.5338379Z # Subtest: responds to health check
+2026-10-20T07:59:44.5338658Z ok 7 - responds to health check
+2026-10-20T07:59:44.5338876Z   ---
+2026-10-20T07:59:44.5350005Z   duration_ms: 2.535654
+2026-10-20T07:59:44.5350214Z   type: 'test'
+2026-10-20T07:59:44.5350385Z   ...
+2026-10-20T07:59:44.5781366Z 1..7
+2026-10-20T07:59:44.5781590Z # tests 7
+2026-10-20T07:59:44.5781716Z # suites 0
+2026-10-20T07:59:44.5782028Z # pass 7
+2026-10-20T07:59:44.5782220Z # fail 0
+2026-10-20T07:59:44.5782413Z # cancelled 0
+2026-10-20T07:59:44.5782603Z # skipped 0
+2026-10-20T07:59:44.5782777Z # todo 0
+2026-10-20T07:59:44.5783002Z # duration_ms 589.091843
+
+
+=== FRONTEND TESTS AND PRODUCTION BUILD — 4 passed; compiled successfully ===
+[Actual excerpt from CICD lines 474–531]
+
+2026-10-20T07:59:44.5906818Z ##[group]Run npm test --prefix secondChance-frontend -- --watchAll=false --runInBand
+2026-10-20T07:59:44.5907187Z npm test --prefix secondChance-frontend -- --watchAll=false --runInBand
+2026-10-20T07:59:44.5960927Z shell: /usr/bin/bash -e {0}
+2026-10-20T07:59:44.5961077Z env:
+2026-10-20T07:59:44.5961189Z   CI: true
+2026-10-20T07:59:44.5961302Z ##[endgroup]
+2026-10-20T07:59:44.6643205Z
+2026-10-20T07:59:44.6643571Z > secondchanceitems-frontend@0.1.0 test
+2026-10-20T07:59:44.6643998Z > react-scripts test --watchAll=false --runInBand
+2026-10-20T07:59:44.6644215Z
+2026-10-20T07:59:45.8750357Z PASS src/integration.test.js
+2026-10-20T07:59:45.8753411Z   ✓ restores the signed-in identity after a page reload (14 ms)
+2026-10-20T07:59:45.8754006Z   ✓ search sends controlled filters and links to the item detail route (77 ms)
+2026-10-20T07:59:45.8754501Z   ✓ failed login is visible and does not create a session (15 ms)
+2026-10-20T07:59:45.8755037Z   ✓ profile saves the authenticated user name and keeps the server email (23 ms)
+2026-10-20T07:59:45.8755299Z
+2026-10-20T07:59:45.8765915Z Test Suites: 1 passed, 1 total
+2026-10-20T07:59:45.8766209Z Tests:       4 passed, 4 total
+2026-10-20T07:59:45.8766420Z Snapshots:   0 total
+2026-10-20T07:59:45.8766559Z Time:        0.922 s
+2026-10-20T07:59:45.8766692Z Ran all test suites.
+2026-10-20T07:59:46.0003528Z ##[group]Run npm run build --prefix secondChance-frontend
+2026-10-20T07:59:46.0003899Z npm run build --prefix secondChance-frontend
+2026-10-20T07:59:46.0059235Z shell: /usr/bin/bash -e {0}
+2026-10-20T07:59:46.0059381Z env:
+2026-10-20T07:59:46.0059646Z   CI: true
+2026-10-20T07:59:46.0059797Z ##[endgroup]
+2026-10-20T07:59:46.0708688Z
+2026-10-20T07:59:46.0709347Z > secondchanceitems-frontend@0.1.0 build
+2026-10-20T07:59:46.0710508Z > react-scripts build
+2026-10-20T07:59:46.0710646Z
+2026-10-20T07:59:46.8452794Z Creating an optimized production build...
+2026-10-20T07:59:46.9077384Z Browserslist: caniuse-lite is outdated. Please run:
+2026-10-20T07:59:46.9077713Z   npx update-browserslist-db@latest
+2026-10-20T07:59:46.9077996Z   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+2026-10-20T07:59:50.9914155Z Browserslist: caniuse-lite is outdated. Please run:
+2026-10-20T07:59:50.9914571Z   npx update-browserslist-db@latest
+2026-10-20T07:59:50.9915071Z   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+2026-10-20T07:59:51.6416968Z Compiled successfully.
+2026-10-20T07:59:51.6417199Z
+2026-10-20T07:59:51.6417322Z File sizes after gzip:
+2026-10-20T07:59:51.6417461Z
+2026-10-20T07:59:51.6515089Z   57.62 kB  build/static/js/main.f2d3ec61.js
+2026-10-20T07:59:51.6515492Z   32.65 kB  build/static/css/main.3ec235fd.css
+2026-10-20T07:59:51.6515816Z
+2026-10-20T07:59:51.6517433Z The project was built assuming it is hosted at /.
+2026-10-20T07:59:51.6517887Z You can control this with the homepage field in your package.json.
+2026-10-20T07:59:51.6518136Z
+2026-10-20T07:59:51.6518278Z The build folder is ready to be deployed.
+2026-10-20T07:59:51.6518578Z You may serve it with a static server:
+2026-10-20T07:59:51.6518739Z
+2026-10-20T07:59:51.6518837Z   npm install -g serve
+2026-10-20T07:59:51.6519038Z   serve -s build
+2026-10-20T07:59:51.6519156Z
+2026-10-20T07:59:51.6519285Z Find out more about deployment here:
+2026-10-20T07:59:51.6519464Z
+2026-10-20T07:59:51.6519693Z   https://cra.link/deployment
+2026-10-20T07:59:51.6519841Z
+
+
+=== CONTAINER BUILD COMMANDS ===
+[Actual excerpt from CICD lines 532–537]
+
+2026-10-20T07:59:51.7034717Z ##[group]Run docker build --target backend -t secondchance-backend:ci .
+2026-10-20T07:59:51.7035200Z docker build --target backend -t secondchance-backend:ci .
+2026-10-20T07:59:51.7035613Z docker build --target sentiment -t secondchance-sentiment:ci .
+2026-10-20T07:59:51.7089110Z shell: /usr/bin/bash -e {0}
+2026-10-20T07:59:51.7089261Z ##[endgroup]
+2026-10-20T07:59:52.0978925Z #0 building with "default" instance using docker driver
+
+
+=== BACKEND CONTAINER EXPORT ===
+[Actual excerpt from CICD lines 683–696]
+
+2026-10-20T08:00:14.2772767Z #15 DONE 5.6s
+2026-10-20T08:00:15.0546559Z
+2026-10-20T08:00:15.0547284Z #16 [backend 6/7] COPY --from=frontend /build/build /app/secondChance-frontend/build
+2026-10-20T08:00:15.2574592Z #16 DONE 0.1s
+2026-10-20T08:00:15.2574746Z
+2026-10-20T08:00:15.2574986Z #17 [backend 7/7] RUN mkdir -p public/images && chown -R node:node public/images
+2026-10-20T08:00:15.4470290Z #17 DONE 0.3s
+2026-10-20T08:00:15.6000554Z
+2026-10-20T08:00:15.6001162Z #18 exporting to image
+2026-10-20T08:00:15.6001475Z #18 exporting layers
+2026-10-20T08:00:16.2771024Z #18 exporting layers 0.8s done
+2026-10-20T08:00:16.2916835Z #18 writing image sha256:5a07b7475f0184e134c5915639cfcc27941687e804997a2532a097d60097e8e8 done
+2026-10-20T08:00:16.2917457Z #18 naming to docker.io/library/secondchance-backend:ci done
+2026-10-20T08:00:16.2917655Z #18 DONE 0.8s
+
+
+=== SENTIMENT CONTAINER EXPORT, DEPLOYMENT VERIFICATION AND BUILD ARTIFACT ===
+[Actual excerpt from CICD lines 735–774]
+
+2026-10-20T08:00:19.5454320Z #9 [sentiment 5/5] COPY --chown=node:node sentiment/ ./
+2026-10-20T08:00:19.5454678Z #9 DONE 0.0s
+2026-10-20T08:00:19.5454797Z
+2026-10-20T08:00:19.5454901Z #10 exporting to image
+2026-10-20T08:00:19.5455121Z #10 exporting layers
+2026-10-20T08:00:20.2746977Z #10 exporting layers 0.9s done
+2026-10-20T08:00:20.2958146Z #10 writing image sha256:0babea53e8bd7a91f19a8eb4e336d0b14bd29e3b535c934d69df29eaf0d3d81c done
+2026-10-20T08:00:20.2958596Z #10 naming to docker.io/library/secondchance-sentiment:ci done
+2026-10-20T08:00:20.2958883Z #10 DONE 0.9s
+2026-10-20T08:00:20.3028368Z ##[group]Run bash scripts/verify-deployment.sh
+2026-10-20T08:00:20.3028588Z bash scripts/verify-deployment.sh
+2026-10-20T08:00:20.3081263Z shell: /usr/bin/bash -e {0}
+2026-10-20T08:00:20.3081409Z ##[endgroup]
+2026-10-20T08:00:20.9543067Z Inserted documents: 16
+2026-10-20T08:00:20.9544051Z Total documents in secondChance.secondChanceItems: 16
+2026-10-20T08:00:23.4401761Z PASS: deployed health, HTML landing, React entry, 16 MongoDB items, image and sentiment API.
+2026-10-20T08:00:23.4492822Z CI/CD deployment verification succeeded: MongoDB, API, sentiment, landing page and React application.
+2026-10-20T08:00:23.7118925Z ##[group]Run actions/upload-artifact@v4
+2026-10-20T08:00:23.7119094Z with:
+2026-10-20T08:00:23.7119220Z   name: secondchance-frontend
+2026-10-20T08:00:23.7119381Z   path: secondChance-frontend/build
+2026-10-20T08:00:23.7120051Z   if-no-files-found: warn
+2026-10-20T08:00:23.7120192Z   compression-level: 6
+2026-10-20T08:00:23.7120323Z   overwrite: false
+2026-10-20T08:00:23.7120451Z   include-hidden-files: false
+2026-10-20T08:00:23.7120589Z ##[endgroup]
+2026-10-20T08:00:23.8308408Z (node:4420) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-20T08:00:23.8309255Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-20T08:00:23.8412160Z With the provided path, there will be 19 files uploaded
+2026-10-20T08:00:23.8414034Z Artifact name is valid!
+2026-10-20T08:00:23.8414976Z Root directory input is valid!
+2026-10-20T08:00:24.1673755Z Beginning upload of artifact content to blob storage
+2026-10-20T08:00:24.3998763Z (node:4420) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-20T08:00:24.9229052Z Uploaded bytes 6431937
+2026-10-20T08:00:24.9666066Z Finished uploading artifact content to blob storage!
+2026-10-20T08:00:24.9666719Z SHA256 digest of uploaded artifact zip is 8dd4227b3a4969219e71beaaa740a59263143a7c40f67dfdbb43f5f7712929f8
+2026-10-20T08:00:24.9667970Z Finalizing artifact upload
+2026-10-20T08:00:25.2131908Z Artifact secondchance-frontend.zip successfully finalized. Artifact ID 12249251472
+2026-10-20T08:00:25.2132877Z Artifact secondchance-frontend has been successfully uploaded! Final size is 6431937 bytes. Artifact ID is 12249251472
+2026-10-20T08:00:25.2137596Z Artifact download URL: https://github.com/Uchiha-Dauren/backend-nodejs-capstone/actions/runs/39390153869/artifacts/12249251472

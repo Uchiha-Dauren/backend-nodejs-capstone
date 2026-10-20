@@ -1,0 +1,3 @@
+$ MONGO_URL=mongodb://127.0.0.1:27029/ MONGO_DB=secondChance node util/import-mongo/index.js
+Inserted documents: 16
+Total documents in secondChance.secondChanceItems: 16
