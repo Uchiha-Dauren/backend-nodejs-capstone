@@ -2,404 +2,413 @@ CI/CD SUBMISSION EVIDENCE — SUCCESSFUL WORKFLOW WITH LINTER
 
 Workflow: SecondChance CI
 Repository: https://github.com/Uchiha-Dauren/backend-nodejs-capstone
-Run URL: https://github.com/Uchiha-Dauren/backend-nodejs-capstone/actions/runs/39393705341
-Job URL: https://github.com/Uchiha-Dauren/backend-nodejs-capstone/actions/runs/39393705341/job/118531127144
-Commit: 6b3ea1079114504023e548cf0e958d20e07effcc
+Run URL: https://github.com/Uchiha-Dauren/backend-nodejs-capstone/actions/runs/39395067567
+Job URL: https://github.com/Uchiha-Dauren/backend-nodejs-capstone/actions/runs/39395067567/job/118535653157
+Commit: ef8fadf3cf1ac6e00b1b51680e3964ecdfa9aae4
 Branch: main
 Attempt: 1
 Job: test-and-build
 Status: completed
 Conclusion: success
-Started: 2026-10-20T08:28:59Z
-Completed: 2026-10-20T08:30:29Z
+Started: 2026-10-20T08:40:17Z
+Completed: 2026-10-20T08:42:04Z
 
-The real Install and Run Linter step ran after checkout and Node.js setup, before application dependency installation and tests. It installed pinned ESLint tooling and executed npm run lint with --max-warnings 0. GitHub marked this step successful. The complete linter log appears below, including its npm package deprecation warning. No lint success output has been invented or substituted.
+Required step names, in actual execution order: Set up job -> Checkout Repository -> Install Node.js -> Install and Run Linter -> Complete job.
+
+The real Install and Run Linter step ran after Checkout Repository and Install Node.js, before application dependency installation and tests. It installed pinned ESLint tooling and executed npm run lint with --max-warnings 0. GitHub marked this step successful. The complete linter log appears below, including its npm package deprecation warning. No lint success output has been invented or substituted.
 
 All 29 tests passed: 18 backend/MongoDB, 7 sentiment and 4 frontend tests. Both container builds and the real container deployment verification also succeeded.
 
-Provenance: downloaded GitHub Actions logs in ci-workflow-logs.zip and API job metadata in ci-jobs.json. The complete Set up job, Checkout, Setup-node, Install and Run Linter, and Complete job logs are retained. Other sections are explicitly marked as excerpts. Only terminal color escape sequences and trailing whitespace are normalized. Full original logs are retained separately.
+Provenance: downloaded GitHub Actions logs in ci-workflow-logs.zip and API job metadata in ci-jobs.json. The complete Set up job, Checkout Repository, Install Node.js, Install and Run Linter, and Complete job logs are retained. Other sections are explicitly marked as excerpts. Only terminal color escape sequences and trailing whitespace are normalized. Full original logs are retained separately.
 
 ALL STEPS — EXACT GITHUB JOB METADATA IN EXECUTION ORDER
 
 1. Set up job
-   status=completed; conclusion=success; started_at=2026-10-20T08:28:59Z; completed_at=2026-10-20T08:29:00Z
+   status=completed; conclusion=success; started_at=2026-10-20T08:40:18Z; completed_at=2026-10-20T08:40:19Z
 
 2. Initialize containers
-   status=completed; conclusion=success; started_at=2026-10-20T08:29:00Z; completed_at=2026-10-20T08:29:17Z
+   status=completed; conclusion=success; started_at=2026-10-20T08:40:19Z; completed_at=2026-10-20T08:40:35Z
 
-3. Run actions/checkout@v4
-   status=completed; conclusion=success; started_at=2026-10-20T08:29:17Z; completed_at=2026-10-20T08:29:19Z
+3. Checkout Repository
+   status=completed; conclusion=success; started_at=2026-10-20T08:40:35Z; completed_at=2026-10-20T08:40:37Z
 
-4. Run actions/setup-node@v4
-   status=completed; conclusion=success; started_at=2026-10-20T08:29:19Z; completed_at=2026-10-20T08:29:20Z
+4. Install Node.js
+   status=completed; conclusion=success; started_at=2026-10-20T08:40:37Z; completed_at=2026-10-20T08:40:40Z
 
 5. Install and Run Linter
-   status=completed; conclusion=success; started_at=2026-10-20T08:29:20Z; completed_at=2026-10-20T08:29:21Z
+   status=completed; conclusion=success; started_at=2026-10-20T08:40:40Z; completed_at=2026-10-20T08:40:42Z
 
 6. Install backend, frontend and sentiment dependencies
-   status=completed; conclusion=success; started_at=2026-10-20T08:29:21Z; completed_at=2026-10-20T08:29:37Z
+   status=completed; conclusion=success; started_at=2026-10-20T08:40:42Z; completed_at=2026-10-20T08:40:59Z
 
 7. Run real MongoDB API and authentication tests
-   status=completed; conclusion=success; started_at=2026-10-20T08:29:37Z; completed_at=2026-10-20T08:29:40Z
+   status=completed; conclusion=success; started_at=2026-10-20T08:40:59Z; completed_at=2026-10-20T08:41:02Z
 
 8. Test sentiment analysis
-   status=completed; conclusion=success; started_at=2026-10-20T08:29:40Z; completed_at=2026-10-20T08:29:40Z
+   status=completed; conclusion=success; started_at=2026-10-20T08:41:02Z; completed_at=2026-10-20T08:41:03Z
 
 9. Test frontend behavior
-   status=completed; conclusion=success; started_at=2026-10-20T08:29:40Z; completed_at=2026-10-20T08:29:42Z
+   status=completed; conclusion=success; started_at=2026-10-20T08:41:03Z; completed_at=2026-10-20T08:41:06Z
 
 10. Build the production frontend
-   status=completed; conclusion=success; started_at=2026-10-20T08:29:42Z; completed_at=2026-10-20T08:29:47Z
+   status=completed; conclusion=success; started_at=2026-10-20T08:41:06Z; completed_at=2026-10-20T08:41:14Z
 
 11. Build deployment containers
-   status=completed; conclusion=success; started_at=2026-10-20T08:29:47Z; completed_at=2026-10-20T08:30:19Z
+   status=completed; conclusion=success; started_at=2026-10-20T08:41:14Z; completed_at=2026-10-20T08:41:55Z
 
 12. Verify container deployment
-   status=completed; conclusion=success; started_at=2026-10-20T08:30:19Z; completed_at=2026-10-20T08:30:23Z
+   status=completed; conclusion=success; started_at=2026-10-20T08:41:55Z; completed_at=2026-10-20T08:41:58Z
 
 13. Store compiled frontend
-   status=completed; conclusion=success; started_at=2026-10-20T08:30:23Z; completed_at=2026-10-20T08:30:24Z
+   status=completed; conclusion=success; started_at=2026-10-20T08:41:58Z; completed_at=2026-10-20T08:42:01Z
 
-24. Post Run actions/setup-node@v4
-   status=completed; conclusion=success; started_at=2026-10-20T08:30:24Z; completed_at=2026-10-20T08:30:27Z
+24. Post Install Node.js
+   status=completed; conclusion=success; started_at=2026-10-20T08:42:01Z; completed_at=2026-10-20T08:42:01Z
 
-25. Post Run actions/checkout@v4
-   status=completed; conclusion=success; started_at=2026-10-20T08:30:27Z; completed_at=2026-10-20T08:30:27Z
+25. Post Checkout Repository
+   status=completed; conclusion=success; started_at=2026-10-20T08:42:01Z; completed_at=2026-10-20T08:42:01Z
 
 26. Stop containers
-   status=completed; conclusion=success; started_at=2026-10-20T08:30:27Z; completed_at=2026-10-20T08:30:27Z
+   status=completed; conclusion=success; started_at=2026-10-20T08:42:01Z; completed_at=2026-10-20T08:42:01Z
 
 27. Complete job
-   status=completed; conclusion=success; started_at=2026-10-20T08:30:27Z; completed_at=2026-10-20T08:30:27Z
+   status=completed; conclusion=success; started_at=2026-10-20T08:42:01Z; completed_at=2026-10-20T08:42:01Z
 
 
 === 1_Set up job.txt — COMPLETE ACTUAL LOG ===
 
-2026-10-20T08:28:59.6972073Z Current runner version: '2.337.0'
-2026-10-20T08:28:59.6993272Z ##[group]Runner Image Provisioner
-2026-10-20T08:28:59.6994493Z Hosted Compute Agent
-2026-10-20T08:28:59.6994964Z Version: 20261012.601
-2026-10-20T08:28:59.6995467Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
-2026-10-20T08:28:59.6996032Z Build Date: 2026-10-12T17:48:21Z
-2026-10-20T08:28:59.6996544Z Worker ID: {e883576c-f42d-41f3-96da-32e078ea5651}
-2026-10-20T08:28:59.6997097Z Region: centralus
-2026-10-20T08:28:59.6997553Z Cloud: Azure
-2026-10-20T08:28:59.6997976Z ##[endgroup]
-2026-10-20T08:28:59.6999035Z ##[group]Operating System
-2026-10-20T08:28:59.6999507Z Ubuntu
-2026-10-20T08:28:59.7000144Z 24.04.5
-2026-10-20T08:28:59.7000539Z LTS
-2026-10-20T08:28:59.7000936Z ##[endgroup]
-2026-10-20T08:28:59.7001386Z ##[group]Runner Image
-2026-10-20T08:28:59.7001852Z Image: ubuntu-24.04
-2026-10-20T08:28:59.7002331Z Version: 20261012.334.1
-2026-10-20T08:28:59.7003141Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
-2026-10-20T08:28:59.7004482Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
-2026-10-20T08:28:59.7005213Z ##[endgroup]
-2026-10-20T08:28:59.7006087Z ##[group]GITHUB_TOKEN Permissions
-2026-10-20T08:28:59.7007831Z Contents: read
-2026-10-20T08:28:59.7008289Z Metadata: read
-2026-10-20T08:28:59.7008755Z ##[endgroup]
-2026-10-20T08:28:59.7010562Z Secret source: Actions
-2026-10-20T08:28:59.7011308Z Cache mode: write
-2026-10-20T08:28:59.7011876Z Prepare workflow directory
-2026-10-20T08:28:59.7382219Z Prepare all required actions
-2026-10-20T08:28:59.7422834Z Getting action download info
-2026-10-20T08:28:59.9745369Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
-2026-10-20T08:29:00.0540470Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
-2026-10-20T08:29:00.1718100Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
-2026-10-20T08:29:00.3983061Z Complete job name: test-and-build
+2026-10-20T08:40:18.7643800Z Current runner version: '2.337.0'
+2026-10-20T08:40:18.7669222Z ##[group]Runner Image Provisioner
+2026-10-20T08:40:18.7670132Z Hosted Compute Agent
+2026-10-20T08:40:18.7670791Z Version: 20261012.601
+2026-10-20T08:40:18.7671478Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-20T08:40:18.7672683Z Build Date: 2026-10-12T17:48:21Z
+2026-10-20T08:40:18.7673815Z Worker ID: {a13bfcbe-6119-41f8-862e-acee458f9bf8}
+2026-10-20T08:40:18.7674574Z Region: westus
+2026-10-20T08:40:18.7675098Z Cloud: Azure
+2026-10-20T08:40:18.7675727Z ##[endgroup]
+2026-10-20T08:40:18.7677386Z ##[group]Operating System
+2026-10-20T08:40:18.7678154Z Ubuntu
+2026-10-20T08:40:18.7678689Z 24.04.5
+2026-10-20T08:40:18.7679185Z LTS
+2026-10-20T08:40:18.7679769Z ##[endgroup]
+2026-10-20T08:40:18.7680326Z ##[group]Runner Image
+2026-10-20T08:40:18.7680964Z Image: ubuntu-24.04
+2026-10-20T08:40:18.7681587Z Version: 20261012.334.1
+2026-10-20T08:40:18.7682966Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-20T08:40:18.7684773Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+2026-10-20T08:40:18.7685780Z ##[endgroup]
+2026-10-20T08:40:18.7686946Z ##[group]GITHUB_TOKEN Permissions
+2026-10-20T08:40:18.7689065Z Contents: read
+2026-10-20T08:40:18.7689719Z Metadata: read
+2026-10-20T08:40:18.7690304Z ##[endgroup]
+2026-10-20T08:40:18.7692649Z Secret source: Actions
+2026-10-20T08:40:18.7693666Z Cache mode: write
+2026-10-20T08:40:18.7694641Z Prepare workflow directory
+2026-10-20T08:40:18.8122860Z Prepare all required actions
+2026-10-20T08:40:18.8170698Z Getting action download info
+2026-10-20T08:40:19.1792177Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-20T08:40:19.2668170Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-20T08:40:19.3545630Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-20T08:40:19.5763767Z Complete job name: test-and-build
 
 
 === 2_Initialize containers.txt — EXCERPT ACTUAL LOG ===
 
-2026-10-20T08:29:17.7817117Z healthy
-2026-10-20T08:29:17.7829186Z mongodb service is healthy.
+2026-10-20T08:40:35.2438320Z healthy
+2026-10-20T08:40:35.2453970Z mongodb service is healthy.
 
 
-=== 3_Run actions_checkout@v4.txt — COMPLETE ACTUAL LOG ===
+=== 3_Checkout Repository.txt — COMPLETE ACTUAL LOG ===
 
-2026-10-20T08:29:17.8061238Z ##[group]Run actions/checkout@v4
-2026-10-20T08:29:17.8061770Z with:
-2026-10-20T08:29:17.8062044Z   repository: Uchiha-Dauren/backend-nodejs-capstone
-2026-10-20T08:29:17.8064044Z   token: ***
-2026-10-20T08:29:17.8064283Z   ssh-strict: true
-2026-10-20T08:29:17.8064528Z   ssh-user: git
-2026-10-20T08:29:17.8064762Z   persist-credentials: true
-2026-10-20T08:29:17.8065003Z   clean: true
-2026-10-20T08:29:17.8065266Z   sparse-checkout-cone-mode: true
-2026-10-20T08:29:17.8065534Z   fetch-depth: 1
-2026-10-20T08:29:17.8065796Z   fetch-tags: false
-2026-10-20T08:29:17.8066039Z   show-progress: true
-2026-10-20T08:29:17.8066259Z   lfs: false
-2026-10-20T08:29:17.8066467Z   submodules: false
-2026-10-20T08:29:17.8066713Z   set-safe-directory: true
-2026-10-20T08:29:17.8066976Z   allow-unsafe-pr-checkout: false
-2026-10-20T08:29:17.8067310Z ##[endgroup]
-2026-10-20T08:29:17.8860318Z Syncing repository: Uchiha-Dauren/backend-nodejs-capstone
-2026-10-20T08:29:17.8861681Z ##[group]Getting Git version info
-2026-10-20T08:29:17.8862101Z Working directory is '/home/runner/work/backend-nodejs-capstone/backend-nodejs-capstone'
-2026-10-20T08:29:17.8862745Z [command]/usr/bin/git version
-2026-10-20T08:29:17.8923076Z git version 2.55.0
-2026-10-20T08:29:17.8936529Z ##[endgroup]
-2026-10-20T08:29:17.8948380Z Temporarily overriding HOME='/home/runner/work/_temp/408ce8e8-779f-448d-9c9b-2c1322755806' before making global git config changes
-2026-10-20T08:29:17.8949257Z Adding repository directory to the temporary git global config as a safe directory
-2026-10-20T08:29:17.8953560Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/backend-nodejs-capstone/backend-nodejs-capstone
-2026-10-20T08:29:17.8993077Z Deleting the contents of '/home/runner/work/backend-nodejs-capstone/backend-nodejs-capstone'
-2026-10-20T08:29:17.8997285Z ##[group]Initializing the repository
-2026-10-20T08:29:17.9000667Z [command]/usr/bin/git init /home/runner/work/backend-nodejs-capstone/backend-nodejs-capstone
-2026-10-20T08:29:17.9090507Z hint: Using 'master' as the name for the initial branch. This default branch name
-2026-10-20T08:29:17.9091209Z hint: will change to "main" in Git 3.0. To configure the initial branch name
-2026-10-20T08:29:17.9091859Z hint: to use in all of your new repositories, which will suppress this warning,
-2026-10-20T08:29:17.9092325Z hint: call:
-2026-10-20T08:29:17.9092526Z hint:
-2026-10-20T08:29:17.9092952Z hint: 	git config --global init.defaultBranch <name>
-2026-10-20T08:29:17.9093339Z hint:
-2026-10-20T08:29:17.9093640Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
-2026-10-20T08:29:17.9094033Z hint: 'development'. The just-created branch can be renamed via this command:
-2026-10-20T08:29:17.9094319Z hint:
-2026-10-20T08:29:17.9094899Z hint: 	git branch -m <name>
-2026-10-20T08:29:17.9095136Z hint:
-2026-10-20T08:29:17.9095435Z hint: Disable this message with "git config set advice.defaultBranchName false"
-2026-10-20T08:29:17.9096021Z Initialized empty Git repository in /home/runner/work/backend-nodejs-capstone/backend-nodejs-capstone/.git/
-2026-10-20T08:29:17.9098962Z [command]/usr/bin/git remote add origin https://github.com/Uchiha-Dauren/backend-nodejs-capstone
-2026-10-20T08:29:17.9139482Z ##[endgroup]
-2026-10-20T08:29:17.9140204Z ##[group]Disabling automatic garbage collection
-2026-10-20T08:29:17.9144201Z [command]/usr/bin/git config --local gc.auto 0
-2026-10-20T08:29:17.9170804Z ##[endgroup]
-2026-10-20T08:29:17.9171208Z ##[group]Setting up auth
-2026-10-20T08:29:17.9178220Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
-2026-10-20T08:29:17.9206453Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
-2026-10-20T08:29:17.9486798Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
-2026-10-20T08:29:17.9512920Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
-2026-10-20T08:29:17.9658635Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
-2026-10-20T08:29:17.9683291Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
-2026-10-20T08:29:17.9822239Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
-2026-10-20T08:29:17.9851866Z ##[endgroup]
-2026-10-20T08:29:17.9852621Z ##[group]Fetching the repository
-2026-10-20T08:29:17.9859240Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +6b3ea1079114504023e548cf0e958d20e07effcc:refs/remotes/origin/main
-2026-10-20T08:29:19.6513877Z From https://github.com/Uchiha-Dauren/backend-nodejs-capstone
-2026-10-20T08:29:19.6520546Z  * [new ref]         6b3ea1079114504023e548cf0e958d20e07effcc -> origin/main
-2026-10-20T08:29:19.6522896Z ##[endgroup]
-2026-10-20T08:29:19.6523688Z ##[group]Determining the checkout info
-2026-10-20T08:29:19.6524425Z ##[endgroup]
-2026-10-20T08:29:19.6524812Z [command]/usr/bin/git sparse-checkout disable
-2026-10-20T08:29:19.6578639Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
-2026-10-20T08:29:19.6601510Z ##[group]Checking out the ref
-2026-10-20T08:29:19.6604990Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
-2026-10-20T08:29:19.8116890Z Switched to a new branch 'main'
-2026-10-20T08:29:19.8117777Z branch 'main' set up to track 'origin/main'.
-2026-10-20T08:29:19.8131611Z ##[endgroup]
-2026-10-20T08:29:19.8168508Z [command]/usr/bin/git log -1 --format=%H
-2026-10-20T08:29:19.8187853Z 6b3ea1079114504023e548cf0e958d20e07effcc
+2026-10-20T08:40:35.2817684Z ##[group]Run actions/checkout@v4
+2026-10-20T08:40:35.2818277Z with:
+2026-10-20T08:40:35.2818544Z   repository: Uchiha-Dauren/backend-nodejs-capstone
+2026-10-20T08:40:35.2821164Z   token: ***
+2026-10-20T08:40:35.2821374Z   ssh-strict: true
+2026-10-20T08:40:35.2821582Z   ssh-user: git
+2026-10-20T08:40:35.2821802Z   persist-credentials: true
+2026-10-20T08:40:35.2822504Z   clean: true
+2026-10-20T08:40:35.2822724Z   sparse-checkout-cone-mode: true
+2026-10-20T08:40:35.2822978Z   fetch-depth: 1
+2026-10-20T08:40:35.2823174Z   fetch-tags: false
+2026-10-20T08:40:35.2823377Z   show-progress: true
+2026-10-20T08:40:35.2823588Z   lfs: false
+2026-10-20T08:40:35.2823773Z   submodules: false
+2026-10-20T08:40:35.2823975Z   set-safe-directory: true
+2026-10-20T08:40:35.2824216Z   allow-unsafe-pr-checkout: false
+2026-10-20T08:40:35.2824774Z ##[endgroup]
+2026-10-20T08:40:35.3854664Z Syncing repository: Uchiha-Dauren/backend-nodejs-capstone
+2026-10-20T08:40:35.3856912Z ##[group]Getting Git version info
+2026-10-20T08:40:35.3857746Z Working directory is '/home/runner/work/backend-nodejs-capstone/backend-nodejs-capstone'
+2026-10-20T08:40:35.3858906Z [command]/usr/bin/git version
+2026-10-20T08:40:35.3917300Z git version 2.55.0
+2026-10-20T08:40:35.3944544Z ##[endgroup]
+2026-10-20T08:40:35.3958405Z Temporarily overriding HOME='/home/runner/work/_temp/f5eac327-8392-4273-b252-b9227a86e3af' before making global git config changes
+2026-10-20T08:40:35.3959995Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-20T08:40:35.3965466Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/backend-nodejs-capstone/backend-nodejs-capstone
+2026-10-20T08:40:35.4017641Z Deleting the contents of '/home/runner/work/backend-nodejs-capstone/backend-nodejs-capstone'
+2026-10-20T08:40:35.4022509Z ##[group]Initializing the repository
+2026-10-20T08:40:35.4027243Z [command]/usr/bin/git init /home/runner/work/backend-nodejs-capstone/backend-nodejs-capstone
+2026-10-20T08:40:35.4136946Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-20T08:40:35.4138217Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-20T08:40:35.4140333Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-20T08:40:35.4141342Z hint: call:
+2026-10-20T08:40:35.4142078Z hint:
+2026-10-20T08:40:35.4151979Z hint: 	git config --global init.defaultBranch <name>
+2026-10-20T08:40:35.4152580Z hint:
+2026-10-20T08:40:35.4152907Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-20T08:40:35.4153440Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-20T08:40:35.4153834Z hint:
+2026-10-20T08:40:35.4154043Z hint: 	git branch -m <name>
+2026-10-20T08:40:35.4154277Z hint:
+2026-10-20T08:40:35.4154593Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-20T08:40:35.4155245Z Initialized empty Git repository in /home/runner/work/backend-nodejs-capstone/backend-nodejs-capstone/.git/
+2026-10-20T08:40:35.4165088Z [command]/usr/bin/git remote add origin https://github.com/Uchiha-Dauren/backend-nodejs-capstone
+2026-10-20T08:40:35.4206726Z ##[endgroup]
+2026-10-20T08:40:35.4207416Z ##[group]Disabling automatic garbage collection
+2026-10-20T08:40:35.4212235Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-20T08:40:35.4261503Z ##[endgroup]
+2026-10-20T08:40:35.4263098Z ##[group]Setting up auth
+2026-10-20T08:40:35.4263812Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-20T08:40:35.4292770Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-20T08:40:35.4720099Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-20T08:40:35.4765754Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-20T08:40:35.4993578Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-20T08:40:35.5030372Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-20T08:40:35.5256076Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-20T08:40:35.5298189Z ##[endgroup]
+2026-10-20T08:40:35.5298667Z ##[group]Fetching the repository
+2026-10-20T08:40:35.5308322Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +ef8fadf3cf1ac6e00b1b51680e3964ecdfa9aae4:refs/remotes/origin/main
+2026-10-20T08:40:37.0098774Z From https://github.com/Uchiha-Dauren/backend-nodejs-capstone
+2026-10-20T08:40:37.0099997Z  * [new ref]         ef8fadf3cf1ac6e00b1b51680e3964ecdfa9aae4 -> origin/main
+2026-10-20T08:40:37.0104677Z ##[endgroup]
+2026-10-20T08:40:37.0105418Z ##[group]Determining the checkout info
+2026-10-20T08:40:37.0107917Z ##[endgroup]
+2026-10-20T08:40:37.0116221Z [command]/usr/bin/git sparse-checkout disable
+2026-10-20T08:40:37.0172089Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-20T08:40:37.0206492Z ##[group]Checking out the ref
+2026-10-20T08:40:37.0246704Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-20T08:40:37.1759153Z Switched to a new branch 'main'
+2026-10-20T08:40:37.1766693Z branch 'main' set up to track 'origin/main'.
+2026-10-20T08:40:37.1784148Z ##[endgroup]
+2026-10-20T08:40:37.1831377Z [command]/usr/bin/git log -1 --format=%H
+2026-10-20T08:40:37.1858380Z ef8fadf3cf1ac6e00b1b51680e3964ecdfa9aae4
 
 
-=== 4_Run actions_setup-node@v4.txt — COMPLETE ACTUAL LOG ===
+=== 4_Install Node.js.txt — COMPLETE ACTUAL LOG ===
 
-2026-10-20T08:29:19.8383021Z ##[group]Run actions/setup-node@v4
-2026-10-20T08:29:19.8383339Z with:
-2026-10-20T08:29:19.8383544Z   node-version: 22
-2026-10-20T08:29:19.8383746Z   cache: npm
-2026-10-20T08:29:19.8384229Z   cache-dependency-path: package-lock.json
+2026-10-20T08:40:37.2111427Z ##[group]Run actions/setup-node@v4
+2026-10-20T08:40:37.2111728Z with:
+2026-10-20T08:40:37.2112257Z   node-version: 22
+2026-10-20T08:40:37.2112496Z   cache: npm
+2026-10-20T08:40:37.2113115Z   cache-dependency-path: package-lock.json
 secondChance-backend/package-lock.json
 secondChance-frontend/package-lock.json
 sentiment/package-lock.json
 
-2026-10-20T08:29:19.8384754Z   always-auth: false
-2026-10-20T08:29:19.8385409Z   check-latest: false
-2026-10-20T08:29:19.8387308Z   token: ***
-2026-10-20T08:29:19.8387515Z ##[endgroup]
-2026-10-20T08:29:19.9427080Z Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
-2026-10-20T08:29:19.9431013Z (node:2470) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-2026-10-20T08:29:19.9431656Z (Use `node --trace-deprecation ...` to show where the warning was created)
-2026-10-20T08:29:19.9433139Z ##[group]Environment details
-2026-10-20T08:29:20.2446709Z node: v22.23.3
-2026-10-20T08:29:20.2447367Z npm: 10.9.9
-2026-10-20T08:29:20.2447909Z yarn: 1.22.22
-2026-10-20T08:29:20.2448724Z ##[endgroup]
-2026-10-20T08:29:20.2486236Z [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
-2026-10-20T08:29:20.3256172Z /home/runner/.npm
-2026-10-20T08:29:20.4613962Z npm cache is not found
+2026-10-20T08:40:37.2113809Z   always-auth: false
+2026-10-20T08:40:37.2114023Z   check-latest: false
+2026-10-20T08:40:37.2116492Z   token: ***
+2026-10-20T08:40:37.2116700Z ##[endgroup]
+2026-10-20T08:40:37.3525298Z Found in cache @ /opt/hostedtoolcache/node/22.23.3/x64
+2026-10-20T08:40:37.3528909Z (node:2701) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-20T08:40:37.3529635Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-20T08:40:37.3532571Z ##[group]Environment details
+2026-10-20T08:40:37.7189307Z node: v22.23.3
+2026-10-20T08:40:37.7189616Z npm: 10.9.9
+2026-10-20T08:40:37.7190096Z yarn: 1.22.22
+2026-10-20T08:40:37.7190989Z ##[endgroup]
+2026-10-20T08:40:37.7248604Z [command]/opt/hostedtoolcache/node/22.23.3/x64/bin/npm config get cache
+2026-10-20T08:40:37.8332847Z /home/runner/.npm
+2026-10-20T08:40:38.1199298Z Cache hit for: node-cache-Linux-x64-npm-8e95102e9b148b84935c79e8910b41b8cb973946c002a12aac4d56febec4e357
+2026-10-20T08:40:38.1311078Z (node:2701) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-20T08:40:39.3907421Z Received 12582912 of 77911550 (16.2%), 12.0 MBs/sec
+2026-10-20T08:40:39.9464572Z Received 77911550 of 77911550 (100.0%), 47.7 MBs/sec
+2026-10-20T08:40:39.9466424Z Cache Size: ~74 MB (77911550 B)
+2026-10-20T08:40:39.9536603Z [command]/usr/bin/tar -xf /home/runner/work/_temp/d04523fc-5c99-43ff-ad4d-a8ed3b93f40f/cache.tzst -P -C /home/runner/work/backend-nodejs-capstone/backend-nodejs-capstone --use-compress-program unzstd
+2026-10-20T08:40:40.3304647Z Cache restored successfully
+2026-10-20T08:40:40.3347482Z Cache restored from key: node-cache-Linux-x64-npm-8e95102e9b148b84935c79e8910b41b8cb973946c002a12aac4d56febec4e357
 
 
 === 5_Install and Run Linter.txt — COMPLETE ACTUAL LOG ===
 
-2026-10-20T08:29:20.4729522Z ##[group]Run npm ci --no-audit --no-fund
-2026-10-20T08:29:20.4730452Z npm ci --no-audit --no-fund
-2026-10-20T08:29:20.4730779Z npm run lint
-2026-10-20T08:29:20.4867461Z shell: /usr/bin/bash -e {0}
-2026-10-20T08:29:20.4867773Z ##[endgroup]
-2026-10-20T08:29:21.5153847Z npm warn deprecated eslint@9.39.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
-2026-10-20T08:29:21.5283963Z
-2026-10-20T08:29:21.5284618Z added 87 packages in 996ms
-2026-10-20T08:29:21.6098388Z
-2026-10-20T08:29:21.6099343Z > secondchance-project-tooling@1.0.0 lint
-2026-10-20T08:29:21.6100240Z > eslint secondChance-backend sentiment scripts tests eslint.config.cjs --max-warnings 0
-2026-10-20T08:29:21.6100626Z
+2026-10-20T08:40:40.3514434Z ##[group]Run npm ci --no-audit --no-fund
+2026-10-20T08:40:40.3514854Z npm ci --no-audit --no-fund
+2026-10-20T08:40:40.3515150Z npm run lint
+2026-10-20T08:40:40.3725171Z shell: /usr/bin/bash -e {0}
+2026-10-20T08:40:40.3725491Z ##[endgroup]
+2026-10-20T08:40:41.4107869Z npm warn deprecated eslint@9.39.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+2026-10-20T08:40:41.4343369Z
+2026-10-20T08:40:41.4343826Z added 87 packages in 998ms
+2026-10-20T08:40:41.5678499Z
+2026-10-20T08:40:41.5679379Z > secondchance-project-tooling@1.0.0 lint
+2026-10-20T08:40:41.5680677Z > eslint secondChance-backend sentiment scripts tests eslint.config.cjs --max-warnings 0
+2026-10-20T08:40:41.5681494Z
 
 
 === 6_Install backend, frontend and sentiment dependencies.txt — EXCERPT ACTUAL LOG ===
 
-2026-10-20T08:29:21.9583516Z ##[group]Run npm ci --prefix secondChance-backend --no-audit --no-fund
-2026-10-20T08:29:21.9584044Z npm ci --prefix secondChance-backend --no-audit --no-fund
-2026-10-20T08:29:21.9584422Z npm ci --prefix secondChance-frontend --no-audit --no-fund
-2026-10-20T08:29:21.9584759Z npm ci --prefix sentiment --no-audit --no-fund
-2026-10-20T08:29:24.0875028Z added 327 packages in 2s
-2026-10-20T08:29:35.2598037Z added 1595 packages in 11s
-2026-10-20T08:29:37.5187096Z added 201 packages in 2s
+2026-10-20T08:40:42.0936187Z ##[group]Run npm ci --prefix secondChance-backend --no-audit --no-fund
+2026-10-20T08:40:42.0936807Z npm ci --prefix secondChance-backend --no-audit --no-fund
+2026-10-20T08:40:42.0937487Z npm ci --prefix secondChance-frontend --no-audit --no-fund
+2026-10-20T08:40:42.0937928Z npm ci --prefix sentiment --no-audit --no-fund
+2026-10-20T08:40:44.2121685Z added 327 packages in 2s
+2026-10-20T08:40:56.7837252Z added 1595 packages in 12s
+2026-10-20T08:40:59.2930819Z added 201 packages in 2s
 
 
 === 7_Run real MongoDB API and authentication tests.txt — EXCERPT: COMMAND, ALL TEST RESULTS AND FINAL COUNTS ACTUAL LOG ===
 
-2026-10-20T08:29:37.5321007Z ##[group]Run npm test --prefix secondChance-backend
-2026-10-20T08:29:37.5321492Z npm test --prefix secondChance-backend
-2026-10-20T08:29:37.6138273Z > giftlink-backend@1.0.0 test
-2026-10-20T08:29:37.6138846Z > node --test ../tests/*.test.cjs
-2026-10-20T08:29:37.6464561Z TAP version 13
-2026-10-20T08:29:38.0247363Z # Inserted documents: 16
-2026-10-20T08:29:38.0248158Z # Total documents in secondChance_test_2732_1792484977668.secondChanceItems: 16
-2026-10-20T08:29:38.0563514Z ok 1 - health checks the real MongoDB connection
-2026-10-20T08:29:38.0684471Z # Inserted documents: 0
-2026-10-20T08:29:38.0731055Z # Total documents in secondChance_test_2732_1792484977668.secondChanceItems: 16
-2026-10-20T08:29:38.0785426Z ok 2 - seeding imports exactly 16 gifts and a second seed creates no duplicates
-2026-10-20T08:29:38.0840960Z ok 3 - one gift can be retrieved by its ID and unknown IDs return 404
-2026-10-20T08:29:38.0973491Z ok 4 - search combines case-insensitive name and category filters
-2026-10-20T08:29:38.1140987Z ok 5 - search treats special regular-expression characters as text
-2026-10-20T08:29:38.3989459Z ok 6 - registration stores a password hash and never returns password fields
-2026-10-20T08:29:39.1419655Z ok 7 - duplicate account creation is prevented even for concurrent requests
-2026-10-20T08:29:39.3898034Z ok 8 - invalid registration and failed login produce appropriate failures
-2026-10-20T08:29:39.6408874Z ok 9 - login returns a usable JWT and authenticated profile
-2026-10-20T08:29:39.6455787Z ok 10 - missing and tampered JWTs cannot update a profile
-2026-10-20T08:29:39.6511642Z ok 11 - authenticated profile update persists the name
-2026-10-20T08:29:39.6618918Z ok 12 - creating a gift requires authentication
-2026-10-20T08:29:39.9163221Z ok 13 - another account cannot change or delete a gift it does not own
-2026-10-20T08:29:39.9273725Z ok 14 - an owner can update and delete the gift and deletion persists
-2026-10-20T08:29:39.9324542Z ok 15 - uploaded non-image data is rejected
-2026-10-20T08:29:39.9455155Z ok 16 - a real image upload is renamed, served and associated with its gift
-2026-10-20T08:29:39.9791836Z ok 17 - concurrent gift creation assigns unique IDs above the seed range
-2026-10-20T08:29:39.9816767Z ok 18 - API errors remain JSON and requests cannot read environment files
-2026-10-20T08:29:39.9939442Z 1..18
-2026-10-20T08:29:39.9939972Z # tests 18
-2026-10-20T08:29:39.9940367Z # suites 0
-2026-10-20T08:29:39.9940626Z # pass 18
-2026-10-20T08:29:39.9940941Z # fail 0
-2026-10-20T08:29:39.9941217Z # cancelled 0
-2026-10-20T08:29:39.9941507Z # skipped 0
-2026-10-20T08:29:39.9941860Z # todo 0
-2026-10-20T08:29:39.9942171Z # duration_ms 2355.843631
+2026-10-20T08:40:59.3159417Z ##[group]Run npm test --prefix secondChance-backend
+2026-10-20T08:40:59.3159878Z npm test --prefix secondChance-backend
+2026-10-20T08:40:59.4254909Z > giftlink-backend@1.0.0 test
+2026-10-20T08:40:59.4255353Z > node --test ../tests/*.test.cjs
+2026-10-20T08:40:59.4713964Z TAP version 13
+2026-10-20T08:41:00.0919208Z # Inserted documents: 16
+2026-10-20T08:41:00.0920514Z # Total documents in secondChance_test_3013_1792485659496.secondChanceItems: 16
+2026-10-20T08:41:00.1412637Z ok 1 - health checks the real MongoDB connection
+2026-10-20T08:41:00.1592422Z # Inserted documents: 0
+2026-10-20T08:41:00.1640639Z # Total documents in secondChance_test_3013_1792485659496.secondChanceItems: 16
+2026-10-20T08:41:00.1693029Z ok 2 - seeding imports exactly 16 gifts and a second seed creates no duplicates
+2026-10-20T08:41:00.1797827Z ok 3 - one gift can be retrieved by its ID and unknown IDs return 404
+2026-10-20T08:41:00.1972197Z ok 4 - search combines case-insensitive name and category filters
+2026-10-20T08:41:00.2125091Z ok 5 - search treats special regular-expression characters as text
+2026-10-20T08:41:00.6188236Z ok 6 - registration stores a password hash and never returns password fields
+2026-10-20T08:41:01.6469048Z ok 7 - duplicate account creation is prevented even for concurrent requests
+2026-10-20T08:41:01.9957279Z ok 8 - invalid registration and failed login produce appropriate failures
+2026-10-20T08:41:02.3423318Z ok 9 - login returns a usable JWT and authenticated profile
+2026-10-20T08:41:02.3493561Z ok 10 - missing and tampered JWTs cannot update a profile
+2026-10-20T08:41:02.3564977Z ok 11 - authenticated profile update persists the name
+2026-10-20T08:41:02.3702896Z ok 12 - creating a gift requires authentication
+2026-10-20T08:41:02.7153321Z ok 13 - another account cannot change or delete a gift it does not own
+2026-10-20T08:41:02.7279232Z ok 14 - an owner can update and delete the gift and deletion persists
+2026-10-20T08:41:02.7358265Z ok 15 - uploaded non-image data is rejected
+2026-10-20T08:41:02.7527856Z ok 16 - a real image upload is renamed, served and associated with its gift
+2026-10-20T08:41:02.7968491Z ok 17 - concurrent gift creation assigns unique IDs above the seed range
+2026-10-20T08:41:02.8008677Z ok 18 - API errors remain JSON and requests cannot read environment files
+2026-10-20T08:41:02.8203228Z 1..18
+2026-10-20T08:41:02.8203644Z # tests 18
+2026-10-20T08:41:02.8204004Z # suites 0
+2026-10-20T08:41:02.8204362Z # pass 18
+2026-10-20T08:41:02.8204712Z # fail 0
+2026-10-20T08:41:02.8205116Z # cancelled 0
+2026-10-20T08:41:02.8205716Z # skipped 0
+2026-10-20T08:41:02.8206229Z # todo 0
+2026-10-20T08:41:02.8206896Z # duration_ms 3361.677899
 
 
 === 8_Test sentiment analysis.txt — EXCERPT: COMMAND, ALL TEST RESULTS AND FINAL COUNTS ACTUAL LOG ===
 
-2026-10-20T08:29:40.0055128Z ##[group]Run npm test --prefix sentiment
-2026-10-20T08:29:40.0055484Z npm test --prefix sentiment
-2026-10-20T08:29:40.0769648Z > sentiment@1.0.0 test
-2026-10-20T08:29:40.0770341Z > node --test
-2026-10-20T08:29:40.1138486Z TAP version 13
-2026-10-20T08:29:40.5821491Z ok 1 - classifies positive: I love this wonderful beautiful gift!
-2026-10-20T08:29:40.5841851Z ok 2 - classifies negative: This is awful and terrible.
-2026-10-20T08:29:40.5880642Z ok 3 - classifies neutral: The chair is in the room.
-2026-10-20T08:29:40.5910760Z ok 4 - classifies neutral: !!!
-2026-10-20T08:29:40.6011421Z ok 5 - rejects missing, empty and non-string sentences
-2026-10-20T08:29:40.6064313Z ok 6 - rejects oversized sentences
-2026-10-20T08:29:40.6106450Z ok 7 - responds to health check
-2026-10-20T08:29:40.6481152Z 1..7
-2026-10-20T08:29:40.6481545Z # tests 7
-2026-10-20T08:29:40.6482008Z # suites 0
-2026-10-20T08:29:40.6482286Z # pass 7
-2026-10-20T08:29:40.6482533Z # fail 0
-2026-10-20T08:29:40.6482839Z # cancelled 0
-2026-10-20T08:29:40.6483130Z # skipped 0
-2026-10-20T08:29:40.6483454Z # todo 0
-2026-10-20T08:29:40.6483762Z # duration_ms 547.693455
+2026-10-20T08:41:02.8350211Z ##[group]Run npm test --prefix sentiment
+2026-10-20T08:41:02.8350595Z npm test --prefix sentiment
+2026-10-20T08:41:02.9438682Z > sentiment@1.0.0 test
+2026-10-20T08:41:02.9439181Z > node --test
+2026-10-20T08:41:02.9949867Z TAP version 13
+2026-10-20T08:41:03.7712679Z ok 1 - classifies positive: I love this wonderful beautiful gift!
+2026-10-20T08:41:03.7758746Z ok 2 - classifies negative: This is awful and terrible.
+2026-10-20T08:41:03.7817033Z ok 3 - classifies neutral: The chair is in the room.
+2026-10-20T08:41:03.7856936Z ok 4 - classifies neutral: !!!
+2026-10-20T08:41:03.7997725Z ok 5 - rejects missing, empty and non-string sentences
+2026-10-20T08:41:03.8067391Z ok 6 - rejects oversized sentences
+2026-10-20T08:41:03.8103016Z ok 7 - responds to health check
+2026-10-20T08:41:03.8705334Z 1..7
+2026-10-20T08:41:03.8705764Z # tests 7
+2026-10-20T08:41:03.8723180Z # suites 0
+2026-10-20T08:41:03.8734959Z # pass 7
+2026-10-20T08:41:03.8735399Z # fail 0
+2026-10-20T08:41:03.8735754Z # cancelled 0
+2026-10-20T08:41:03.8736142Z # skipped 0
+2026-10-20T08:41:03.8736471Z # todo 0
+2026-10-20T08:41:03.8736843Z # duration_ms 894.816593
 
 
 === 9_Test frontend behavior.txt — COMPLETE ACTUAL LOG ===
 
-2026-10-20T08:29:40.6613740Z ##[group]Run npm test --prefix secondChance-frontend -- --watchAll=false --runInBand
-2026-10-20T08:29:40.6614322Z npm test --prefix secondChance-frontend -- --watchAll=false --runInBand
-2026-10-20T08:29:40.6647922Z shell: /usr/bin/bash -e {0}
-2026-10-20T08:29:40.6648283Z env:
-2026-10-20T08:29:40.6648500Z   CI: true
-2026-10-20T08:29:40.6648711Z ##[endgroup]
-2026-10-20T08:29:40.7346271Z
-2026-10-20T08:29:40.7346987Z > secondchanceitems-frontend@0.1.0 test
-2026-10-20T08:29:40.7347491Z > react-scripts test --watchAll=false --runInBand
-2026-10-20T08:29:40.7347723Z
-2026-10-20T08:29:41.9397031Z PASS src/integration.test.js
-2026-10-20T08:29:41.9399927Z   ✓ restores the signed-in identity after a page reload (16 ms)
-2026-10-20T08:29:41.9400529Z   ✓ search sends controlled filters and links to the item detail route (78 ms)
-2026-10-20T08:29:41.9401090Z   ✓ failed login is visible and does not create a session (17 ms)
-2026-10-20T08:29:41.9401889Z   ✓ profile saves the authenticated user name and keeps the server email (24 ms)
-2026-10-20T08:29:41.9402267Z
-2026-10-20T08:29:41.9414407Z Test Suites: 1 passed, 1 total
-2026-10-20T08:29:41.9414947Z Tests:       4 passed, 4 total
-2026-10-20T08:29:41.9415292Z Snapshots:   0 total
-2026-10-20T08:29:41.9415628Z Time:        0.915 s
-2026-10-20T08:29:41.9415904Z Ran all test suites.
+2026-10-20T08:41:03.8867620Z ##[group]Run npm test --prefix secondChance-frontend -- --watchAll=false --runInBand
+2026-10-20T08:41:03.8868290Z npm test --prefix secondChance-frontend -- --watchAll=false --runInBand
+2026-10-20T08:41:03.8930457Z shell: /usr/bin/bash -e {0}
+2026-10-20T08:41:03.8930725Z env:
+2026-10-20T08:41:03.8930914Z   CI: true
+2026-10-20T08:41:03.8931114Z ##[endgroup]
+2026-10-20T08:41:03.9929937Z
+2026-10-20T08:41:03.9930683Z > secondchanceitems-frontend@0.1.0 test
+2026-10-20T08:41:03.9931621Z > react-scripts test --watchAll=false --runInBand
+2026-10-20T08:41:03.9932311Z
+2026-10-20T08:41:05.9729738Z PASS src/integration.test.js
+2026-10-20T08:41:05.9735030Z   ✓ restores the signed-in identity after a page reload (24 ms)
+2026-10-20T08:41:05.9735896Z   ✓ search sends controlled filters and links to the item detail route (127 ms)
+2026-10-20T08:41:05.9736592Z   ✓ failed login is visible and does not create a session (23 ms)
+2026-10-20T08:41:05.9737297Z   ✓ profile saves the authenticated user name and keeps the server email (34 ms)
+2026-10-20T08:41:05.9737778Z
+2026-10-20T08:41:05.9754623Z Test Suites: 1 passed, 1 total
+2026-10-20T08:41:05.9755249Z Tests:       4 passed, 4 total
+2026-10-20T08:41:05.9755597Z Snapshots:   0 total
+2026-10-20T08:41:05.9755891Z Time:        1.523 s
+2026-10-20T08:41:05.9756166Z Ran all test suites.
 
 
 === 10_Build the production frontend.txt — EXCERPT ACTUAL LOG ===
 
-2026-10-20T08:29:42.0620614Z ##[group]Run npm run build --prefix secondChance-frontend
-2026-10-20T08:29:42.0621064Z npm run build --prefix secondChance-frontend
-2026-10-20T08:29:42.1370981Z > secondchanceitems-frontend@0.1.0 build
-2026-10-20T08:29:42.1371502Z > react-scripts build
-2026-10-20T08:29:42.8435243Z Creating an optimized production build...
-2026-10-20T08:29:47.7841646Z Compiled successfully.
-2026-10-20T08:29:47.7842109Z File sizes after gzip:
-2026-10-20T08:29:47.7948375Z   57.62 kB  build/static/js/main.f2d3ec61.js
-2026-10-20T08:29:47.7948797Z   32.65 kB  build/static/css/main.3ec235fd.css
-2026-10-20T08:29:47.7951393Z You can control this with the homepage field in your package.json.
-2026-10-20T08:29:47.7951884Z The build folder is ready to be deployed.
+2026-10-20T08:41:06.1060092Z ##[group]Run npm run build --prefix secondChance-frontend
+2026-10-20T08:41:06.1060893Z npm run build --prefix secondChance-frontend
+2026-10-20T08:41:06.2188080Z > secondchanceitems-frontend@0.1.0 build
+2026-10-20T08:41:06.2188691Z > react-scripts build
+2026-10-20T08:41:07.2913554Z Creating an optimized production build...
+2026-10-20T08:41:14.7487469Z Compiled successfully.
+2026-10-20T08:41:14.7488083Z File sizes after gzip:
+2026-10-20T08:41:14.7629715Z   57.62 kB  build/static/js/main.f2d3ec61.js
+2026-10-20T08:41:14.7630402Z   32.65 kB  build/static/css/main.3ec235fd.css
+2026-10-20T08:41:14.7634948Z You can control this with the homepage field in your package.json.
+2026-10-20T08:41:14.7636179Z The build folder is ready to be deployed.
 
 
 === 11_Build deployment containers.txt — EXCERPT ACTUAL LOG ===
 
-2026-10-20T08:29:47.8277107Z ##[group]Run docker build --target backend -t secondchance-backend:ci .
-2026-10-20T08:29:47.8277653Z docker build --target backend -t secondchance-backend:ci .
-2026-10-20T08:29:47.8278027Z docker build --target sentiment -t secondchance-sentiment:ci .
-2026-10-20T08:30:13.4395535Z #15 5.855 Compiled successfully.
-2026-10-20T08:30:14.1451848Z #16 [backend 6/7] COPY --from=frontend /build/build /app/secondChance-frontend/build
-2026-10-20T08:30:14.7365490Z #18 exporting to image
-2026-10-20T08:30:14.7365882Z #18 exporting layers
-2026-10-20T08:30:15.2343476Z #18 exporting layers 0.6s done
-2026-10-20T08:30:15.2531030Z #18 writing image sha256:18d3ff9fc470acb4217cd7b1e582edf835214e369b1be553fc7eb2206b7c85fc done
-2026-10-20T08:30:15.2531726Z #18 naming to docker.io/library/secondchance-backend:ci done
-2026-10-20T08:30:18.9212630Z #10 exporting to image
-2026-10-20T08:30:18.9212991Z #10 exporting layers
-2026-10-20T08:30:19.5452375Z #10 exporting layers 0.8s done
-2026-10-20T08:30:19.5629263Z #10 writing image sha256:c506fa60cafbbbf8edd088cb0e61fd041d0119730a6574670d55e79ed49788df done
-2026-10-20T08:30:19.5630349Z #10 naming to docker.io/library/secondchance-sentiment:ci done
+2026-10-20T08:41:14.8201679Z ##[group]Run docker build --target backend -t secondchance-backend:ci .
+2026-10-20T08:41:14.8203084Z docker build --target backend -t secondchance-backend:ci .
+2026-10-20T08:41:14.8203971Z docker build --target sentiment -t secondchance-sentiment:ci .
+2026-10-20T08:41:46.8447975Z #15 8.993 Compiled successfully.
+2026-10-20T08:41:47.9148144Z #16 [backend 6/7] COPY --from=frontend /build/build /app/secondChance-frontend/build
+2026-10-20T08:41:48.2536809Z #18 exporting to image
+2026-10-20T08:41:48.2537540Z #18 exporting layers
+2026-10-20T08:41:49.2607156Z #18 exporting layers 1.2s done
+2026-10-20T08:41:49.2770057Z #18 writing image sha256:a3cbf41e9d8a7b067fb39f882608b81ce3aa27d3734e03418dcc79472b95fb94 done
+2026-10-20T08:41:49.2771380Z #18 naming to docker.io/library/secondchance-backend:ci done
+2026-10-20T08:41:53.8433107Z #10 exporting to image
+2026-10-20T08:41:53.8433531Z #10 exporting layers
+2026-10-20T08:41:55.0262056Z #10 exporting layers 1.3s done
+2026-10-20T08:41:55.0415357Z #10 writing image sha256:bad40da9338f7a04a2ad40b78e076a4e40424dde887fabf74f5a779cb9a1a383 done
+2026-10-20T08:41:55.0416476Z #10 naming to docker.io/library/secondchance-sentiment:ci done
 
 
 === 12_Verify container deployment.txt — COMPLETE ACTUAL LOG ===
 
-2026-10-20T08:30:19.5707036Z ##[group]Run bash scripts/verify-deployment.sh
-2026-10-20T08:30:19.5707529Z bash scripts/verify-deployment.sh
-2026-10-20T08:30:19.5743752Z shell: /usr/bin/bash -e {0}
-2026-10-20T08:30:19.5744134Z ##[endgroup]
-2026-10-20T08:30:20.2989454Z Inserted documents: 16
-2026-10-20T08:30:20.2990451Z Total documents in secondChance.secondChanceItems: 16
-2026-10-20T08:30:22.8057492Z PASS: deployed health, HTML landing, React entry, 16 MongoDB items, image and sentiment API.
-2026-10-20T08:30:22.8141777Z CI/CD deployment verification succeeded: MongoDB, API, sentiment, landing page and React application.
+2026-10-20T08:41:55.0502721Z ##[group]Run bash scripts/verify-deployment.sh
+2026-10-20T08:41:55.0503157Z bash scripts/verify-deployment.sh
+2026-10-20T08:41:55.0566270Z shell: /usr/bin/bash -e {0}
+2026-10-20T08:41:55.0566550Z ##[endgroup]
+2026-10-20T08:41:56.0332347Z Inserted documents: 16
+2026-10-20T08:41:56.0333336Z Total documents in secondChance.secondChanceItems: 16
+2026-10-20T08:41:58.6696133Z PASS: deployed health, HTML landing, React entry, 16 MongoDB items, image and sentiment API.
+2026-10-20T08:41:58.6784952Z CI/CD deployment verification succeeded: MongoDB, API, sentiment, landing page and React application.
 
 
 === 13_Store compiled frontend.txt — EXCERPT ACTUAL LOG ===
 
-2026-10-20T08:30:23.0561763Z ##[group]Run actions/upload-artifact@v4
-2026-10-20T08:30:23.1884660Z Artifact name is valid!
-2026-10-20T08:30:23.4687462Z Beginning upload of artifact content to blob storage
-2026-10-20T08:30:24.2280943Z Uploaded bytes 6431937
-2026-10-20T08:30:24.2699197Z Finished uploading artifact content to blob storage!
-2026-10-20T08:30:24.2700425Z SHA256 digest of uploaded artifact zip is 0d90669674f4326acd12faa98ca051108f30af63f29241116364f89ce79fd0d4
-2026-10-20T08:30:24.2701792Z Finalizing artifact upload
-2026-10-20T08:30:24.5077837Z Artifact secondchance-frontend.zip successfully finalized. Artifact ID 12251180589
-2026-10-20T08:30:24.5078635Z Artifact secondchance-frontend has been successfully uploaded! Final size is 6431937 bytes. Artifact ID is 12251180589
-2026-10-20T08:30:24.5084593Z Artifact download URL: https://github.com/Uchiha-Dauren/backend-nodejs-capstone/actions/runs/39393705341/artifacts/12251180589
+2026-10-20T08:41:58.9518476Z ##[group]Run actions/upload-artifact@v4
+2026-10-20T08:41:59.1365175Z Artifact name is valid!
+2026-10-20T08:41:59.5094164Z Beginning upload of artifact content to blob storage
+2026-10-20T08:42:00.6860202Z Uploaded bytes 6431937
+2026-10-20T08:42:00.7602653Z Finished uploading artifact content to blob storage!
+2026-10-20T08:42:00.7605902Z SHA256 digest of uploaded artifact zip is 8d636bbca80c1e98f10eb62e898d05968972b21d4db15d14aff494a44a794df2
+2026-10-20T08:42:00.7607105Z Finalizing artifact upload
+2026-10-20T08:42:01.0388225Z Artifact secondchance-frontend.zip successfully finalized. Artifact ID 12251262570
+2026-10-20T08:42:01.0389966Z Artifact secondchance-frontend has been successfully uploaded! Final size is 6431937 bytes. Artifact ID is 12251262570
+2026-10-20T08:42:01.0396659Z Artifact download URL: https://github.com/Uchiha-Dauren/backend-nodejs-capstone/actions/runs/39395067567/artifacts/12251262570
 
 
 === 27_Complete job.txt — COMPLETE ACTUAL LOG ===
 
-2026-10-20T08:30:27.7301110Z Cleaning up orphan processes
-2026-10-20T08:30:27.7488082Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-10-20T08:42:01.7647818Z Cleaning up orphan processes
+2026-10-20T08:42:01.8040130Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
